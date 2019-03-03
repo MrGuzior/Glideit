@@ -10,8 +10,8 @@ let tx = 700;
 let ty = 100;
 let tw = 150;
 let th = 50;
-let tdx = 3;
-let gdx = 0.5;
+let tdx = 3;//3
+let gdx = 0.5;//0.5
 let gx = (canvas.width / 2) - 25;
 let gy = 200;
 let ta = 9; //Thermal ammount
@@ -19,15 +19,18 @@ let minTs = 0.3;//Thermal strenght
 let maxTs = 1;
 let ts;//Thermal strenght
 let al = 150; //Airport lenght
-//let tSeperation = (i*distance + distance);
+let ap = 6500; //Airport posinion
 
 let glider = new Glider(gx, gy, gdx, tw, ts);
 
-let airport = new Airport(6500,canvas.height - 3, tdx, gx, al);
+let airport = new Airport(ap,canvas.height - 3, tdx, gx, al);
 
 let thermalArray = [];
 
-let thermalSeparation = [700, 1700, 2200, 3000, 3600, 4100, 4500, 5300, 6000];
+let thermalSeparation = [700, 1700, 2400, 3100, 3700, 4300, 4800, 5100, 6000];
+
+let cu = new Image();
+cu.src = "cloud.png";
 
 addEventListener('keydown', checkKeyPress);
 addEventListener('click', checkKeyPress);
@@ -71,8 +74,7 @@ function Thermal( x, y, dx, xx, yy, ta, ts){
 	this.draw = function(){
 		c.fillStyle = "white";
 		c.stroke();
-		c.fillRect(this.x,this.y, this.xx, this.yy)	
-		
+		c.fillRect(this.x,this.y, this.xx, this.yy)		
 	}
 
 	this.update = function(){
@@ -84,8 +86,7 @@ function Thermal( x, y, dx, xx, yy, ta, ts){
 		//Stop rolling
 		if (glider.lnd == false) {
 			this.x -= this.dx;
-		}		
-		
+		}			
 			this.draw();
 	}
 }
@@ -136,6 +137,7 @@ function Airport(x,y, dx, gx, al){
 	this.dx = dx;
 	this.gx = gx;
 	this.al = al;
+	this.finish = false;
 
 	this.draw = function(){
 		c.fillStyle = "black";
@@ -145,13 +147,15 @@ function Airport(x,y, dx, gx, al){
 
 	this.update = function(){
 
-		if (this.key === true) {
+		if (this.key) {
 			this.dx = -this.dx;
 			this.key = false;
 		}
 
-		if (this.x <= this.gx && this.x + this.al / 2 >= this.gx && glider.lnd == true) {
-			console.log("Welcome home!");
+		if (this.x <= this.gx &&
+			this.x + this.al / 2 >= this.gx - glider.xx/2&& glider.lnd == true) {		
+			this.finish = true;
+					
 		}
 		if (glider.lnd == false) {
 			this.x -= this.dx;
@@ -161,14 +165,33 @@ function Airport(x,y, dx, gx, al){
 }
 
 function animate(){
-	requestAnimationFrame(animate);
 	c.clearRect(0,0,innerWidth, innerHeight);
+	switch(airport.finish){
+		case true: cancelAnimationFrame(animate);
+					reload();
+		break;
+		default: requestAnimationFrame(animate);
+	}		
 	for (var i = 0; i < thermalArray.length; i++) {
 		thermalArray[i].update();
 	}	
 	glider.update();
-	airport.update();	
+	airport.update();
 }
+
+function reload(){
+	if (airport.finish == true) {
+		window.alert("You made it!");
+		location.reload();
+	}
+}
+
 init();
 animate();
-console.log(thermalArray);
+//console.log(thermalArray);
+
+
+//////////////////////////
+
+
+//convert cos to 360 degrees Math.PI/180
