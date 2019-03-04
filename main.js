@@ -1,14 +1,20 @@
 
 let canvas = document.querySelector("canvas");
 
-canvas.width = 700;
-canvas.height = 400;
+canvas.width = 1280;
+canvas.height = 600;
 
 let c = canvas.getContext("2d");
 
+let cloud = new Image() ;
+cloud.src = "cloud.png";
+
+let bg = new Image(); 
+bg.src = "background.png";
+
 let tx = 700;
-let ty = 100;
-let tw = 300;
+let ty = 0;
+let tw = 256;
 let th = 75;
 let dx = 3;//3
 let gdy = 0.5;//0.5
@@ -22,9 +28,7 @@ let al = 150; //Airport lenght
 let ap = gx; //Airport posinion
 let tp = 7000;
 
-let bg = new Image(); bg.src = "background.png";
-
-let background = new Background();
+let background = new Background(bg);
 
 let glider = new Glider(gx, gy, gdy, tw, ts);
 
@@ -34,10 +38,7 @@ let turnpoint = new Turnpoint(tp, 100, dx, gx);
 
 let thermalArray = [];
 
-let thermalSeparation = [700, 1700, 2400, 3100, 3700, 4300, 4800, 5500, 6200, 7400];
-
-//let cu = new Image();
-//cu.src = "cloud.png";
+let thermalSeparation = [1000, 1700, 2400, 3100, 3700, 4300, 4800, 5500, 6200, 7400];
 
 addEventListener('keydown', checkKeyPress);
 addEventListener('click', checkKeyPress);
@@ -72,7 +73,7 @@ function init(){
 	turnpoint;
 }
 
-function Thermal( x, y, dx, xx, yy, ta, ts){
+function Thermal(x, y, dx, xx, yy, ta, ts){
 	this.x = x;
 	this.y = y;
 	this.dx = dx;
@@ -80,11 +81,12 @@ function Thermal( x, y, dx, xx, yy, ta, ts){
 	this.yy = yy;
 	this.ta = ta;
 	this.ts = ts;
-
+	
 	this.draw = function(){
-		c.fillStyle = "white";
+		/*c.fillStyle = "white";
 		c.stroke();
-		c.fillRect(this.x,this.y, this.xx, this.yy)		
+		c.fillRect(this.x,this.y, this.xx, this.yy)*/
+		c.drawImage(cloud, this.x, this.y);
 	}
 
 	this.update = function(){
@@ -133,8 +135,7 @@ function Glider(x, y, dy, tw, ts){
 			 thermalArray[i].x + (this.thermal.width - this.xx)>= this.x &&
 			 this.lnd == false) {
 				this.y -= this.dy + thermalArray[i].ts;
-			console.log(thermalArray[i].ts);
-
+			//console.log(thermalArray[i].ts);
 			}
 		}
 			this.y += this.dy;						
@@ -177,14 +178,17 @@ function Airport(x,y, dx, gx, al){
 	}
 }
 
-function Background(){
-	this.x = 0;
-	this.y = -200;
+function Background(bg){
+	this.x = -1280;
+	this.y = 0;
 	this.xx = canvas.width;
 	this.yy = canvas.height;
-	this.dx = 1;
+	this.dx = 0.7;
+	this.bg = bg;
 
 	this.update = function(){
+		c.drawImage(this.bg, this.x, this.y);
+
 		if (this.key) {
 			this.dx = -this.dx;
 			this.key = false;
@@ -194,10 +198,12 @@ function Background(){
 			this.x -= this.dx;
 		}
 
-		c.drawImage(bg, this.x, this.y);
+		if (this.x <= -this.xx*2) {
+			this.x = -this.xx;
+		}
 
-		if (this.x <= - 500) {
-			this.x = 0;
+		if (this.x >= 0) {
+			this.x = -this.xx;
 		}
 	}
 }
@@ -234,7 +240,6 @@ function Turnpoint(x,y, dx, gx){
 		this.draw();
 	}
 }
-
 
 function animate(){
 	c.clearRect(0,0,innerWidth, innerHeight);
