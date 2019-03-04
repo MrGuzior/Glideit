@@ -8,29 +8,36 @@ let c = canvas.getContext("2d");
 
 let tx = 700;
 let ty = 100;
-let tw = 150;
-let th = 50;
-let tdx = 3;//3
-let gdx = 0.5;//0.5
+let tw = 300;
+let th = 75;
+let dx = 3;//3
+let gdy = 0.5;//0.5
 let gx = (canvas.width / 2) - 25;
 let gy = 200;
-let ta = 9; //Thermal ammount
-let minTs = 0.3;//Thermal strenght
+let ta = 10; //Thermal ammount
+let minTs = 0.5;//Thermal strenght
 let maxTs = 1;
-let ts;//Thermal strenght
+let ts; //Thermal strenght
 let al = 150; //Airport lenght
-let ap = 6500; //Airport posinion
+let ap = gx; //Airport posinion
+let tp = 7000;
 
-let glider = new Glider(gx, gy, gdx, tw, ts);
+let bg = new Image(); bg.src = "background.png";
 
-let airport = new Airport(ap,canvas.height - 3, tdx, gx, al);
+let background = new Background();
+
+let glider = new Glider(gx, gy, gdy, tw, ts);
+
+let airport = new Airport(ap,canvas.height - 3, dx, gx, al);
+
+let turnpoint = new Turnpoint(tp, 100, dx, gx);
 
 let thermalArray = [];
 
-let thermalSeparation = [700, 1700, 2400, 3100, 3700, 4300, 4800, 5100, 6000];
+let thermalSeparation = [700, 1700, 2400, 3100, 3700, 4300, 4800, 5500, 6200, 7400];
 
-let cu = new Image();
-cu.src = "cloud.png";
+//let cu = new Image();
+//cu.src = "cloud.png";
 
 addEventListener('keydown', checkKeyPress);
 addEventListener('click', checkKeyPress);
@@ -39,11 +46,13 @@ function checkKeyPress(){
 		for (var i = 0; i < thermalArray.length; i++) {
 			thermalArray[i].key = true;
 			airport.key = true;
+			turnpoint.key = true;
+			background.key = true;
 		}	
 }
 
 function randomFloatFromRange(min, max){
-	return Math.random()* (max - min + min);
+	return Math.random()* ((max - min) + min);
 }
 
 function randomIntFromRange(min, max){
@@ -56,10 +65,11 @@ function init(){
 	for (var i = 0; i < ta; i++) {		
 		ts = randomFloatFromRange(minTs, maxTs);	
 		thermalArray.push(new Thermal
-			(thermalSeparation[i], ty, tdx, tw, th, ta, ts));
+			(thermalSeparation[i], ty, dx, tw, th, ta, ts));
 	}
 	glider;
 	airport;
+	turnpoint;
 }
 
 function Thermal( x, y, dx, xx, yy, ta, ts){
@@ -79,7 +89,7 @@ function Thermal( x, y, dx, xx, yy, ta, ts){
 
 	this.update = function(){
 		
-		if (this.key === true) {
+		if (this.key) {
 			this.dx = -this.dx;
 			this.key = false;
 		}
@@ -112,16 +122,19 @@ function Glider(x, y, dy, tw, ts){
 
 	this.update = function(){
 		//Landing
-		if (this.y + 15 > canvas.height) {
+		if (this.y + this.yy > canvas.height) {
 			this.y = canvas.height - this.yy;
 			this.dy = this.dy - this.dy;
 			this.lnd = true;
 		}			
 		//Thermaling up
 		for (var i = 0; i < thermalArray.length; i++) {
-			if (thermalArray[i].x - this.thermal.width/2 < this.x &&
-				thermalArray[i].x + this.thermal.width > this.x && this.lnd == false) {
+			if (thermalArray[i].x <= this.x &&
+			 thermalArray[i].x + (this.thermal.width - this.xx)>= this.x &&
+			 this.lnd == false) {
 				this.y -= this.dy + thermalArray[i].ts;
+			console.log(thermalArray[i].ts);
+
 			}
 		}
 			this.y += this.dy;						
@@ -153,7 +166,7 @@ function Airport(x,y, dx, gx, al){
 		}
 
 		if (this.x <= this.gx &&
-			this.x + this.al / 2 >= this.gx - glider.xx/2&& glider.lnd == true) {		
+			this.x + this.al / 2 >= this.gx - glider.xx/2 && glider.lnd && turnpoint.tp) {		
 			this.finish = true;
 					
 		}
@@ -164,8 +177,68 @@ function Airport(x,y, dx, gx, al){
 	}
 }
 
+function Background(){
+	this.x = 0;
+	this.y = -200;
+	this.xx = canvas.width;
+	this.yy = canvas.height;
+	this.dx = 1;
+
+	this.update = function(){
+		if (this.key) {
+			this.dx = -this.dx;
+			this.key = false;
+		}
+
+		if (glider.lnd == false) {
+			this.x -= this.dx;
+		}
+
+		c.drawImage(bg, this.x, this.y);
+
+		if (this.x <= - 500) {
+			this.x = 0;
+		}
+	}
+}
+
+function Turnpoint(x,y, dx, gx){
+	this.x = x;
+	this.y = y;
+	this.xx = 1;
+	this.yy = 400;
+	this.dx = dx;
+	this.gx = gx;
+	this.tp = false;
+
+	this.draw = function(){
+		c.fillStyle = "red";
+		c.stroke();
+		c.fillRect(this.x, this.y, this.xx, this.yy)
+	}
+
+	this.update = function(){
+		if (this.key) {
+			this.dx = -this.dx;
+			this.key = false;
+		}
+
+		if (this.x <= this.gx) {
+			this.tp = true;
+			console.log("Turned");
+		}
+
+		if (glider.lnd == false) {
+			this.x -= this.dx;
+		}
+		this.draw();
+	}
+}
+
+
 function animate(){
 	c.clearRect(0,0,innerWidth, innerHeight);
+	background.update();
 	switch(airport.finish){
 		case true: cancelAnimationFrame(animate);
 					reload();
@@ -174,13 +247,14 @@ function animate(){
 	}		
 	for (var i = 0; i < thermalArray.length; i++) {
 		thermalArray[i].update();
-	}	
+	}
 	glider.update();
 	airport.update();
+	turnpoint.update();
 }
 
 function reload(){
-	if (airport.finish == true) {
+	if (airport.finish) {
 		window.alert("You made it!");
 		location.reload();
 	}
