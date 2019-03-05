@@ -6,7 +6,7 @@ canvas.height = 600;
 let c = canvas.getContext("2d");
 
 let cloud = new Image() ;
-cloud.src = "cloud1.png";
+cloud.src = "cloud.png";
 
 let bg = new Image(); 
 bg.src = "background.png";
