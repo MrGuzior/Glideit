@@ -23,8 +23,8 @@ let minTy = 40;
 let maxTy = 70;
 let tw = 375;
 let th = 217;
-let dx = 3;//3
-let gdy = 0.5;//0.5
+let dx = 4;//3
+let gdy = 0.7;//0.5
 let gx = (canvas.width / 2) - (125/2);
 let gy = 300;//200
 let ta = 13; //Thermal ammount
@@ -33,7 +33,7 @@ let maxTs = 1.3;
 let ts; //Thermal strenght
 let al = 300; //Airport lenght
 let ap = gx-al; //Airport position
-let tp = 1000; //turnpoint position
+let tp = 8200; //turnpoint position
 let tsl = 800;
 let fs = false;
 let fTime;
@@ -305,14 +305,14 @@ function reload(){
 	if (airport.finish) {
 		stop();
 		calcScore(score, fSeconds, fMinutes, ta);
-		//window.alert("You made it! " + fTime);
-		//location.reload();
+		window.alert("You made it! " + fTime);
+		location.reload();
 	}
 	if (glider.lnd && !airport.finish) {
 		stop();
 		calcScore(score, fSeconds, fMinutes, ta);
-		//window.alert("Outlanding, try again! " + fTime);
-		//location.reload();
+		window.alert("Outlanding, try again! " + fTime);
+		location.reload();
 	}
 }
 function startScore(){
