@@ -32,8 +32,15 @@ let minTs = 0.6;//Thermal strenght
 let maxTs = 1.3;
 let ts; //Thermal strenght
 let al = 300; //Airport lenght
-let ap = gx; //Airport posinion
-let tp = 7000;
+let ap = gx-al; //Airport position
+let tp = 1000; //turnpoint position
+let tsl = 800;
+let fs = false;
+let fTime;
+let fMinutes;
+let fSeconds;
+let score = 0;
+let totSec = 0;
 
 let background = new Background(bg);
 
@@ -41,12 +48,14 @@ let glider = new Glider(gx, gy, gdy, tw, ts, th);
 
 let airport = new Airport(ap,canvas.height - 3, dx, gx, al);
 
-let turnpoint = new Turnpoint(tp, 100, dx, gx);
+let turnpoint = new Turnpoint(tp, 100, dx, gx, "red", "green");
+
+let startLine = new Turnpoint(tsl, 100, dx, gx, "green", "#ffffff00");
 
 let thermalArray = [];
 
 
-let thermalSeparation = [-1000 ,-500, 0, 1300, 2400, 3200, 3900, 4900, 5200, 5800, 6200, 7100, 8000];
+let thermalSeparation = [-1000 ,-600, 0, 1300, 2400, 3200, 3900, 4900, 5200, 5800, 6200, 7100, 8000];
 
 addEventListener('keydown', checkKeyPress);
 addEventListener('click', checkKeyPress);
@@ -58,6 +67,7 @@ function checkKeyPress(){
 			turnpoint.key = true;
 			background.key = true;
 			glider.key = true;
+			startLine.key = true;
 		}	
 }
 
@@ -88,7 +98,7 @@ function Thermal(x, y, dx, xx, yy, ta, ts, ty){
 			this.dx = -this.dx;
 			this.key = false;
 		}
-		if (glider.lnd == false) {
+		if (!glider.lnd) {
 			this.x -= this.dx;
 		}			
 			this.draw();
@@ -160,6 +170,7 @@ function Airport(x,y, dx, gx, al){
 	this.al = al;
 	this.finish = false;
 	this.ac = "black";
+	this.airport = false;
 
 	this.draw = function(){
 		c.fillStyle = this.ac;
@@ -180,7 +191,13 @@ function Airport(x,y, dx, gx, al){
 			this.ac = "green";
 		}
 
-		if (glider.lnd == false) {
+		if (this.x <= this.gx &&
+			this.x + this.al / 2 >= this.gx - glider.xx/2 && glider.lnd && !turnpoint.tp) {		
+			this.airport = true;
+			this.ac = "red";
+		}
+
+		if (!glider.lnd) {
 			this.x -= this.dx;
 		}
 		
@@ -204,7 +221,7 @@ function Background(bg){
 			this.key = false;
 		}
 
-		if (glider.lnd == false) {
+		if (!glider.lnd) {
 			this.x -= this.dx;
 		}
 
@@ -218,7 +235,7 @@ function Background(bg){
 	}
 }
 
-function Turnpoint(x,y, dx, gx){
+function Turnpoint(x,y, dx, gx, tc, tc2){
 	this.x = x;
 	this.y = y;
 	this.xx = 1;
@@ -226,7 +243,8 @@ function Turnpoint(x,y, dx, gx){
 	this.dx = dx;
 	this.gx = gx;
 	this.tp = false;
-	this.tc = "red";
+	this.tc = tc;
+	this.tc2 = tc2;
 
 	this.draw = function(){
 		c.fillStyle = this.tc;
@@ -242,10 +260,10 @@ function Turnpoint(x,y, dx, gx){
 
 		if (this.x <= this.gx) {
 			this.tp = true;
-			this.tc = "green";
+			this.tc = this.tc2;
 		}
 
-		if (glider.lnd == false) {
+		if (!glider.lnd) {
 			this.x -= this.dx;
 		}
 		this.draw();
@@ -267,8 +285,8 @@ function Turnpoint(x,y, dx, gx){
 (function animate(){
 	c.clearRect(0,0,innerWidth, innerHeight);
 	background.update();
-	switch(airport.finish){
-		case true: cancelAnimationFrame(animate);
+	switch(airport.finish, glider.lnd){
+		case true,true: cancelAnimationFrame(animate);
 					reload();
 		break;
 		default: requestAnimationFrame(animate);
@@ -279,20 +297,45 @@ function Turnpoint(x,y, dx, gx){
 	glider.update();
 	airport.update();
 	turnpoint.update();
+	startLine.update();
+	startScore();
 })();
-
-function checkTime(i){
-	if (i < 10) {i = "0" + i};
-	return i;
-}
 
 function reload(){
 	if (airport.finish) {
-		window.alert("You made it!");
-		location.reload();
+		stop();
+		calcScore(score, fSeconds, fMinutes, ta);
+		//window.alert("You made it! " + fTime);
+		//location.reload();
+	}
+	if (glider.lnd && !airport.finish) {
+		stop();
+		calcScore(score, fSeconds, fMinutes, ta);
+		//window.alert("Outlanding, try again! " + fTime);
+		//location.reload();
 	}
 }
+function startScore(){
+	if (startLine.x < gx && !fs) {
+		fs = true;
+		start();
+	}
+}
+function calcScore(score, fSeconds, fMinutes, ta){
+	this.sc = score;
+	this.s = parseInt(fSeconds);
+	this.m = parseInt(fMinutes);
+	this.tsSum = 0;
+	this.ta = ta;
 
+	for (var i = 0; i < thermalArray.length; i++) {
+		this.tsSum += thermalArray[i].ts;
+	}
+	this.sc = this.s + (this.m * 60);
+	console.log(this.sc/(this.tsSum/this.ta));
+	console.log(this.sc);
+	console.log(this.tsSum/this.ta);
+}
 //console.log(thermalArray);
 
 

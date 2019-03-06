@@ -4,9 +4,9 @@ var resetBtn = document.getElementById('reset');
 
 var watch = new Stopwatch(timer);
 
-(function start() {
+function start() {
   watch.start();
-})();
+}
 
 function stop() {
   watch.stop();
@@ -30,7 +30,6 @@ function Stopwatch(elem) {
     var timePassed = now - offset;
 
     offset = now;
-
     return timePassed;
   }
 
@@ -52,7 +51,9 @@ function Stopwatch(elem) {
     while (milliseconds.length < 3) {
       milliseconds = '0' + milliseconds;
     }
-
+    fTime = minutes + ' : ' + seconds;
+    fMinutes = minutes;
+    fSeconds = seconds;
     return minutes + ' : ' + seconds + ' . ' + milliseconds;
   }
 
