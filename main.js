@@ -1,4 +1,3 @@
-
 let canvas = document.querySelector("canvas");
 
 canvas.width = 1280;
@@ -20,7 +19,6 @@ gliderLeft.src = "gliderleft.png";
 /*
 let level01 = new Level();
 level01;
-
 function Level(){
 	*/
 	let tx = 700;
@@ -35,11 +33,11 @@ function Level(){
 	let gy = 300;//200
 	let ta = 16; //Thermal ammount
 	let minTs = 0.6;//Thermal strenght
-	let maxTs = 1.3;
+	let maxTs = 1.4;
 	let ts; //Thermal strenght
 	let al = 300; //Airport lenght
 	let ap = gx-al; //Airport position
-	let tp = 10000; //turnpoint position
+	let tp = 10000; //turnpoint position defoult 
 	let tsl = 1000; //Startline position
 	let fs = false; //flight started
 	let fTime;
@@ -86,7 +84,7 @@ function Level(){
 	}
 
 	function randomFloatFromRange(min, max){
-		return Math.random()* ((max - min) + min);
+		return Math.random()* (max - min)+ min;
 	}
 
 	function randomIntFromRange(min, max){
@@ -290,6 +288,7 @@ function Level(){
 		var sum = 0;
 		for (var i = 0; i < ta; i++) {		
 			ts = randomFloatFromRange(minTs, maxTs);
+			console.log(ts);
 			//ty = randomIntFromRange(minTy, maxTy);
 			thermalArray.push(new Thermal
 				(thermalSeparation[i], ty, dx, tw, th, ta, ts));
@@ -328,7 +327,7 @@ function Level(){
 		if (glider.lnd && !airport.finish) {
 			stop();
 			calcScore(score, fSeconds, fMinutes, ta, tsl, tp);
-			window.alert("Outlanding, try again! " + totScore);
+			window.alert("Outlanding, try again! ");
 			location.reload();
 		}
 	}
@@ -352,7 +351,7 @@ function Level(){
 			this.dst = (this.tp2-this.tp1)*2; //Distance 10K px = 10kmIsh
 			this.sc = parseInt(this.s) + (parseInt(this.m) * 60); //Time in seconds
 			this.spd = this.dst / this.sc;
-			totScore = (this.spd * 1200)/50;
+			totScore = ((this.spd * 1200)/50).toFixed(0);
 
 			console.log(this.dst);
 			console.log(this.sc);
