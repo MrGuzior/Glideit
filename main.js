@@ -70,7 +70,7 @@ function Level(){
 	let thermalSeparation = thermalSeparation3;
 
 	addEventListener('keydown', checkKeyPress);
-	addEventListener('click', checkKeyPress);
+	addEventListener('touchstart',checkKeyPress);
 
 	function checkKeyPress(){
 			for (var i = 0; i < thermalArray.length; i++) {
