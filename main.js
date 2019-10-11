@@ -21,19 +21,19 @@ let level01 = new Level();
 level01;
 function Level(){
 	*/
-	let tx = 700;
-	let ty = 0;
-	let minTy = 40;
-	let maxTy = 70;
-	let tw = 375;
-	let th = 217;
-	let dx = 3.5;//3
-	let gdy = 0.52;//0.5
-	let gx = (canvas.width / 2) - (125/2);
-	let gy = 300;//200
+	//let tx = 700;//700
+	let ty = 0;//0
+	let minTy = 40;//40
+	let maxTy = 70;//70
+	let tw = 375; //375//Thermal width
+	let th = 217; //217//Thermal height
+	let dx = 3.5;//3.5//Glider speed, horisontal game speed
+	let gdy = 0.52;//0.52//Glider sink rate
+	let gx = (canvas.width / 2) - (125/2);//Glider start position
+	let gy = 300;//200//Glider start position
 	let ta = 16; //Thermal ammount
-	let minTs = 0.6;//Thermal strenght
-	let maxTs = 1.4;
+	let minTs = 0.6;//Thermal min strenght
+	let maxTs = 1.4;//Thermal max strenght
 	let ts; //Thermal strenght
 	let al = 300; //Airport lenght
 	let ap = gx-al; //Airport position
@@ -105,7 +105,7 @@ function Level(){
 		}
 
 		this.update = function(){
-			
+			//Reverse direction
 			if (this.key) {
 				this.dx = -this.dx;
 				this.key = false;
@@ -155,8 +155,9 @@ function Level(){
 					if (thermalArray[i].y >= this.y- this.th) {
 						this.y = this.dy - thermalArray[i].ts + this.th;
 					}
+
 				}
-			}
+			}//Reverse direction
 			if (this.key) {
 				this.val = -this.val;
 				this.key = false;
@@ -191,7 +192,7 @@ function Level(){
 		}
 
 		this.update = function(){
-
+			//Reverse direction
 			if (this.key) {
 				this.dx = -this.dx;
 				this.key = false;
@@ -227,7 +228,7 @@ function Level(){
 
 		this.update = function(){
 			c.drawImage(this.bg, this.x, this.y);
-
+			//Reverse direction
 			if (this.key) {
 				this.dx = -this.dx;
 				this.key = false;
@@ -265,6 +266,7 @@ function Level(){
 		}
 
 		this.update = function(){
+			//Reverse direction
 			if (this.key) {
 				this.dx = -this.dx;
 				this.key = false;
@@ -358,11 +360,3 @@ function Level(){
 			console.log(this.spd);
 			console.log(totScore);
 	}
-
-	//console.log(thermalArray);
-
-
-	//////////////////////////
-
-
-	//convert cos to 360 degrees Math.PI/180
