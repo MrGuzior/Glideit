@@ -37,7 +37,7 @@ function Level(){
 	let ts; //Thermal strenght
 	let al = 300; //Airport lenght
 	let ap = gx-al; //Airport position
-	let tp = 10000; //turnpoint position defoult 
+	let tp = 10000; //10000 turnpoint position defoult 
 	let tsl = 1000; //Startline position
 	let fs = false; //flight started
 	let fTime;
@@ -290,7 +290,6 @@ function Level(){
 		var sum = 0;
 		for (var i = 0; i < ta; i++) {		
 			ts = randomFloatFromRange(minTs, maxTs);
-			console.log(ts);
 			//ty = randomIntFromRange(minTy, maxTy);
 			thermalArray.push(new Thermal
 				(thermalSeparation[i], ty, dx, tw, th, ta, ts));
@@ -355,8 +354,8 @@ function Level(){
 			this.spd = this.dst / this.sc;
 			totScore = ((this.spd * 1200)/50).toFixed(0);
 
-			console.log(this.dst);
+			/*console.log(this.dst);
 			console.log(this.sc);
 			console.log(this.spd);
-			console.log(totScore);
+			console.log(totScore);*/
 	}
