@@ -321,8 +321,13 @@ function Level(){
 	function reload(){
 		if (airport.finish) {
 			stop();
+			let scoreArray = localStorage.getItem("score") ? JSON.parse(localStorage.getItem("score")) : [];
 			calcScore(score, fSeconds, fMinutes, ta, tsl, tp);
-			window.alert("You made it! " + totScore);
+			scoreArray.push(totScore);
+			localStorage.setItem("score", JSON.stringify(scoreArray));
+			scoreArray.sort(function(a,b){return b-a});
+			window.alert("You made it!\nYour score: " + totScore + " points\nHighscores:\n" + scoreArray.map(function(num,index)
+				{return index + 1 + ". " + num.toString()}).join("\n"));
 			location.reload();
 		}
 		if (glider.lnd && !airport.finish) {
