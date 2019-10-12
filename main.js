@@ -69,6 +69,8 @@ function Level(){
 
 	let thermalSeparation = thermalSeparation3;
 
+	let displayTimer = new drawTimer();
+
 	addEventListener('keydown', checkKeyPress);
 	addEventListener('touchstart',checkKeyPress);
 
@@ -284,6 +286,16 @@ function Level(){
 		}
 	}
 
+	function drawTimer(){
+		this.update = function(){
+			if(fs){
+				c.font = "40px Arial";
+				c.fillStyle = "#000";
+				c.fillText(timerMinutes + " : " + timerSeconds + " : " + timerMilliseconds, 20, 50);
+			}
+		}
+	}
+
 	(function init(){
 		//thermal;
 		thermalArray = [];
@@ -311,11 +323,13 @@ function Level(){
 		for (var i = 0; i < thermalArray.length; i++) {
 			thermalArray[i].update();
 		}
+		displayTimer.update();
 		glider.update();
 		airport.update();
 		turnpoint.update();
 		startLine.update();
 		startScore();
+		
 	})();
 
 	function reload(){
@@ -358,7 +372,6 @@ function Level(){
 			this.sc = parseInt(this.s) + (parseInt(this.m) * 60); //Time in seconds
 			this.spd = this.dst / this.sc;
 			totScore = ((this.spd * 1200)/50).toFixed(0);
-
 			/*console.log(this.dst);
 			console.log(this.sc);
 			console.log(this.spd);

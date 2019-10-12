@@ -4,6 +4,10 @@ var resetBtn = document.getElementById('reset');
 
 var watch = new Stopwatch(timer);
 
+let timerMilliseconds;
+let timerSeconds;
+let timerMinutes;
+
 function start() {
   watch.start();
 }
@@ -22,7 +26,7 @@ function Stopwatch(elem) {
       time += delta();
     }
     
-    elem.textContent = timeFormatter(time);
+    timeFormatter(time);
   }
 
   function delta() {
@@ -39,6 +43,10 @@ function Stopwatch(elem) {
     var minutes = time.getMinutes().toString();
     var seconds = time.getSeconds().toString();
     var milliseconds = time.getMilliseconds().toString();
+
+    timerMilliseconds = milliseconds;
+    timerSeconds = seconds;
+    timerMinutes = minutes;
 
     if (minutes.length < 2) {
       minutes = '0' + minutes;
