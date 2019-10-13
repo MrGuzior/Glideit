@@ -1,75 +1,29 @@
-let canvas = document.querySelector("canvas");
+	canvas = document.querySelector("canvas");
+	canvas.width = 1280;
+	canvas.height = 600;
+	c = canvas.getContext("2d");
+	cloud = new Image() ;
+	cloud.src = "cloud.png";
+	bg = new Image(); 
+	bg.src = "background.png";
+	gliderRight = new Image();
+	gliderRight.src = "gliderright.png";
+	gliderLeft = new Image();
+	gliderLeft.src = "gliderleft.png";
+	gx = (canvas.width / 2) - (125/2);
+	ap = gx-airportLength;
 
-canvas.width = 1280;
-canvas.height = 600;
+	background = new Background(bg);
 
-let c = canvas.getContext("2d");
+	glider = new Glider(gx, gliderStartY, gliderPaceY, cloudWidth, cloudHeigth, cloudCount);
 
-let cloud = new Image() ;
-cloud.src = "cloud.png";
+	airport = new Airport(ap,canvas.height - 3, paceX, gx, airportLength);
 
-let bg = new Image(); 
-bg.src = "background.png";
+	turnpoint = new Turnpoint(turnpointPosition, 100, paceX, gx, "red", "green");
 
-let gliderRight = new Image();
-gliderRight.src = "gliderright.png";
+	startLine = new Turnpoint(startlinePosition, 100, paceX, gx, "green", "#ffffff00");
 
-let gliderLeft = new Image();
-gliderLeft.src = "gliderleft.png";
-/*
-let level01 = new Level();
-level01;
-function Level(){
-	*/
-	//let tx = 700;//700
-	let ty = 0;//0
-	let minTy = 40;//40
-	let maxTy = 70;//70
-	let tw = 375; //375//Thermal width
-	let th = 217; //217//Thermal height
-	let dx = 3.5;//3.5//Glider speed, horisontal game speed
-	let gdy = 0.52;//0.52//Glider sink rate
-	let gx = (canvas.width / 2) - (125/2);//Glider start position
-	let gy = 300;//200//Glider start position
-	let ta = 16; //Thermal ammount
-	let minTs = 0.6;//Thermal min strenght
-	let maxTs = 1.4;//Thermal max strenght
-	let ts; //Thermal strenght
-	let al = 300; //Airport lenght
-	let ap = gx-al; //Airport position
-	let tp = 10000; //10000 turnpoint position defoult 
-	let tsl = 1000; //Startline position
-	let fs = false; //flight started
-	let fTime;
-	let fMinutes;
-	let fSeconds;
-	let score = 0;
-	let totScore;
-	let totSec = 0;
-
-	let background = new Background(bg);
-
-	let glider = new Glider(gx, gy, gdy, tw, ts, th);
-
-	let airport = new Airport(ap,canvas.height - 3, dx, gx, al);
-
-	let turnpoint = new Turnpoint(tp, 100, dx, gx, "red", "green");
-
-	let startLine = new Turnpoint(tsl, 100, dx, gx, "green", "#ffffff00");
-
-	//let calc = new CalcScore(score, fSeconds, fMinutes, ta, tsl, tp);
-
-	let thermalArray = [];
-
-	let thermalSeparation1 = [-10000 ,-6000, 0, 1300, 2400, 3200, 3900, 4900, 5200, 5800, 6200, 7100, 8000];
-
-	let thermalSeparation2 = [1300, 1800, 3000, 4000, 4500, 5000, 5100, 5400, 6000, 6400, 6900, 7300, 8000, 8500, 9000, 10000];
-
-	let thermalSeparation3 = [700, 2700, 3000, 4500, 6500, 6700, 6900, 8000, 10000, 11000, 12000, 13000, 14000, 15000, 15000, 15000];
-
-	let thermalSeparation = thermalSeparation3;
-
-	let displayTimer = new drawTimer();
+	displayTimer = new drawTimer();
 
 	addEventListener('keydown', checkKeyPress);
 	addEventListener('touchstart',checkKeyPress);
@@ -119,16 +73,16 @@ function Level(){
 		}
 	}
 
-	function Glider(x, y, dy, tw, ts, th){
+	function Glider(x, y, dy, tw, th, ta){
 		this.x = x;
 		this.y = y;
 		this.dy = dy;
 		this.xx = 125;
 		this.yy = 30;
+		this.ta = ta;
 		this.thermal = {
 			width:  tw,
-			ammount: ta,
-			strenght: ts 
+			ammount: ta
 		};
 		this.lnd = false;
 		this.right = gliderRight;
@@ -288,7 +242,7 @@ function Level(){
 
 	function drawTimer(){
 		this.update = function(){
-			if(fs){
+			if(flightStarted){
 				c.font = "40px Arial";
 				c.fillStyle = "#000";
 				c.fillText(timerMinutes + " : " + timerSeconds + " : " + timerMilliseconds, 20, 50);
@@ -300,11 +254,11 @@ function Level(){
 		//thermal;
 		thermalArray = [];
 		var sum = 0;
-		for (var i = 0; i < ta; i++) {		
-			ts = randomFloatFromRange(minTs, maxTs);
-			//ty = randomIntFromRange(minTy, maxTy);
+		for (var i = 0; i < cloudCount; i++) {		
+			ts = randomFloatFromRange(minThermalStrength, maxThermalStrength);
+			//ty = randomIntFromRange(minCloudPositionY, maxCloudPositionY);
 			thermalArray.push(new Thermal
-				(thermalSeparation[i], ty, dx, tw, th, ta, ts));
+				(thermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, cloudCount, ts));
 		}
 	})();
 
@@ -336,44 +290,40 @@ function Level(){
 		if (airport.finish) {
 			stop();
 			let scoreArray = localStorage.getItem("score") ? JSON.parse(localStorage.getItem("score")) : [];
-			calcScore(score, fSeconds, fMinutes, ta, tsl, tp);
-			scoreArray.push(totScore);
+			calcScore(score, flightSeconds, flightMinutes, cloudCount, startlinePosition, turnpointPosition);
+			scoreArray.push(totalScore);
 			localStorage.setItem("score", JSON.stringify(scoreArray));
 			scoreArray.sort(function(a,b){return b-a});
-			window.alert("You made it!\nYour score: " + totScore + " points\nHighscores:\n" + scoreArray.map(function(num,index)
+			window.alert("You made it!\nYour score: " + totalScore +
+			 " points\nHighscores:\n" + scoreArray.map(function(num,index)
 				{return index + 1 + ". " + num.toString()}).join("\n"));
 			location.reload();
 		}
 		if (glider.lnd && !airport.finish) {
 			stop();
-			calcScore(score, fSeconds, fMinutes, ta, tsl, tp);
+			calcScore(score, flightSeconds, flightMinutes, cloudCount, startlinePosition, turnpointPosition);
 			window.alert("Outlanding, try again! ");
 			location.reload();
 		}
 	}
 	function startScore(){
-		if (startLine.x < gx && !fs) {
-			fs = true;
+		if (startLine.x < gx && !flightStarted) {
+			flightStarted = true;
 			start();
 		}
 	}
 
-	function calcScore(score, fSeconds, fMinutes, ta, tsl, tp){
+	function calcScore(score, fs, fm, ta, tsl, tp){
 		this.sc = score;
-		this.s = fSeconds;
-		this.m = fMinutes;
+		this.s = fs;
+		this.m = fm;
 		this.tsSum = 0;
 		this.ta = ta;
-		this.tp1 = tsl; //startLine
-		this.tp2 = tp; //turnpoint
-
+		this.tp1 = tsl;
+		this.tp2 = tp;
 
 			this.dst = (this.tp2-this.tp1)*2; //Distance 10K px = 10kmIsh
 			this.sc = parseInt(this.s) + (parseInt(this.m) * 60); //Time in seconds
 			this.spd = this.dst / this.sc;
-			totScore = ((this.spd * 1200)/50).toFixed(0);
-			/*console.log(this.dst);
-			console.log(this.sc);
-			console.log(this.spd);
-			console.log(totScore);*/
+			totalScore = ((this.spd * 1200)/50).toFixed(0);
 	}

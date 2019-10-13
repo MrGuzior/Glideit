@@ -1,12 +1,12 @@
-var timer = document.getElementById('timer');
-var toggleBtn = document.getElementById('toggle');
-var resetBtn = document.getElementById('reset');
+timer = document.getElementById('timer');
+toggleBtn = document.getElementById('toggle');
+resetBtn = document.getElementById('reset');
 
-var watch = new Stopwatch(timer);
+watch = new Stopwatch(timer);
 
-let timerMilliseconds;
-let timerSeconds;
-let timerMinutes;
+timerMilliseconds;
+timerSeconds;
+timerMinutes;
 
 function start() {
   watch.start();
@@ -47,22 +47,8 @@ function Stopwatch(elem) {
     timerMilliseconds = milliseconds;
     timerSeconds = seconds;
     timerMinutes = minutes;
-
-    if (minutes.length < 2) {
-      minutes = '0' + minutes;
-    }
-
-    if (seconds.length < 2) {
-      seconds = '0' + seconds;
-    }
-
-    while (milliseconds.length < 3) {
-      milliseconds = '0' + milliseconds;
-    }
-    fTime = minutes + ' : ' + seconds;
-    fMinutes = minutes;
-    fSeconds = seconds;
-    return minutes + ' : ' + seconds + ' . ' + milliseconds;
+    flightMinutes = minutes;
+    flightSeconds = seconds;
   }
 
   this.start = function() {
