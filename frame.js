@@ -36,7 +36,7 @@
 				this.dx = -this.dx;
 				this.key = false;
 			}
-			
+
 			if (!glider.lnd) {
 				if (this.wd == 1) {
 				this.x -= this.dx + this.ws;
@@ -48,7 +48,7 @@
 		}
 	}
 
-	function Glider(x, y, dy, tw, th, ta){
+	function Glider(x, y, dy, tw, th, ta, ws, wd){
 		this.x = x;
 		this.y = y;
 		this.dy = dy;
@@ -64,6 +64,9 @@
 		this.left = gliderLeft;
 		this.val = 1;
 		this.th = th;
+		this.ws = ws;
+		this.wd = wd;
+		this.td = (this.y-this.th)*this.ws*1.5;
 
 		this.draw = function (){
 			c.drawImage(this.drc, this.x, this.y,this.xx,this.yy);
@@ -78,16 +81,28 @@
 			}			
 
 			for (var i = 0; i < thermalArray.length; i++) {
-				if (thermalArray[i].x <= this.x &&
-				 thermalArray[i].x + (this.thermal.width - this.xx)>= this.x &&
-				 this.lnd == false) {
-				 this.y -= this.dy + thermalArray[i].ts;
+				if (this.wd == 1) {
+					if (thermalArray[i].x + this.td <= this.x&&
+					 thermalArray[i].x  + (this.thermal.width - this.xx)+ this.td >= this.x&&
+					 this.lnd == false) {
+					 this.y -= this.dy + thermalArray[i].ts;
 
-					if (thermalArray[i].y >= this.y- this.th) {
-						this.y = this.dy - thermalArray[i].ts + this.th;
+						if (thermalArray[i].y >= this.y- this.th) {
+							this.y = this.dy - thermalArray[i].ts + this.th;
+						}
 					}
+				}else{
+					if (thermalArray[i].x - this.td <= this.x&&
+					 thermalArray[i].x - this.td + (this.thermal.width - this.xx)>= this.x&&
+					 this.lnd == false) {
+					 this.y -= this.dy + thermalArray[i].ts;
 
+						if (thermalArray[i].y >= this.y- this.th) {
+							this.y = this.dy - thermalArray[i].ts + this.th;
+						}
+					}
 				}
+
 			}
 			if (this.key) {
 				this.val = -this.val;

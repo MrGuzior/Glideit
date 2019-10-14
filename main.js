@@ -16,15 +16,14 @@
 		thermalArray = [];
 		var sum = 0;
 		windDirection = randomIntFromRange(0,2);
-		for (var i = 0; i < cloudCount; i++) {		
-			ts = randomFloatFromRange(minThermalStrength, maxThermalStrength);
+		for (var i = 0; i < cloudCount; i++) {
 			thermalArray.push(new Thermal
-				(thermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, cloudCount, ts, windStrength, windDirection));
+				(thermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, cloudCount, thermalStrength[i], windStrength, windDirection));
 		}
 	})();
 
 	background = new Background(bg, windStrength, windDirection);
-	glider = new Glider(gliderPositionX, gliderStartY, gliderPaceY, cloudWidth, cloudHeigth, cloudCount);
+	glider = new Glider(gliderPositionX, gliderStartY, gliderPaceY, cloudWidth, cloudHeigth, cloudCount, windStrength, windDirection);
 	airport = new Airport(airportPosition,canvas.height - 3, paceX, gliderPositionX, airportLength, windStrength, windDirection);
 	turnpoint = new Turnpoint(turnpointPosition, 100, paceX, gliderPositionX, "red", "green", windStrength, windDirection);
 	startLine = new Turnpoint(startlinePosition, 100, paceX, gliderPositionX, "green", "#ffffff00", windStrength, windDirection);
@@ -83,8 +82,8 @@
 		if (glider.lnd && !airport.finish) {
 			stop();
 			calcScore(score, flightSeconds, flightMinutes, cloudCount, startlinePosition, turnpointPosition);
-			window.alert("Outlanding, try again! ");
-			location.reload();
+			//window.alert("Outlanding, try again! ");
+			//location.reload();
 		}
 	}
 	function startScore(){
