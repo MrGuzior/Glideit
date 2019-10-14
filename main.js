@@ -1,29 +1,38 @@
+(function main(){
 	canvas = document.querySelector("canvas");
 	canvas.width = 1280;
 	canvas.height = 600;
 	c = canvas.getContext("2d");
 	cloud = new Image() ;
-	cloud.src = "cloud.png";
-	bg = new Image(); 
-	bg.src = "background.png";
+	bg = new Image();
 	gliderRight = new Image();
-	gliderRight.src = "gliderright.png";
 	gliderLeft = new Image();
+	cloud.src = "cloud.png";
+	bg.src = "background.png";
+	gliderRight.src = "gliderright.png";
 	gliderLeft.src = "gliderleft.png";
-	gx = (canvas.width / 2) - (125/2);
-	ap = gx-airportLength;
 
 	background = new Background(bg);
 
-	glider = new Glider(gx, gliderStartY, gliderPaceY, cloudWidth, cloudHeigth, cloudCount);
+	glider = new Glider(gliderPositionX, gliderStartY, gliderPaceY, cloudWidth, cloudHeigth, cloudCount);
 
-	airport = new Airport(ap,canvas.height - 3, paceX, gx, airportLength);
+	airport = new Airport(airportPosition,canvas.height - 3, paceX, gliderPositionX, airportLength);
 
-	turnpoint = new Turnpoint(turnpointPosition, 100, paceX, gx, "red", "green");
+	turnpoint = new Turnpoint(turnpointPosition, 100, paceX, gliderPositionX, "red", "green");
 
-	startLine = new Turnpoint(startlinePosition, 100, paceX, gx, "green", "#ffffff00");
+	startLine = new Turnpoint(startlinePosition, 100, paceX, gliderPositionX, "green", "#ffffff00");
 
 	displayTimer = new drawTimer();
+
+	(function init(){
+		thermalArray = [];
+		var sum = 0;
+		for (var i = 0; i < cloudCount; i++) {		
+			ts = randomFloatFromRange(minThermalStrength, maxThermalStrength);
+			thermalArray.push(new Thermal
+				(thermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, cloudCount, ts));
+		}
+	})();
 
 	addEventListener('keydown', checkKeyPress);
 	addEventListener('touchstart',checkKeyPress);
