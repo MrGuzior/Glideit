@@ -16,7 +16,7 @@
 		}
 	}
 
-	function Thermal(x, y, dx, xx, yy, ta, ts, ty){
+	function Thermal(x, y, dx, xx, yy, ta, ts, ws, wd){
 		this.x = x;
 		this.y = y;
 		this.dx = dx;
@@ -24,6 +24,8 @@
 		this.yy = yy;
 		this.ta = ta;
 		this.ts = ts;
+		this.ws = ws;
+		this.wd = wd;
 		
 		this.draw = function(){
 			c.drawImage(cloud, this.x, this.y, this.xx, this.yy);
@@ -34,8 +36,13 @@
 				this.dx = -this.dx;
 				this.key = false;
 			}
+			
 			if (!glider.lnd) {
-				this.x -= this.dx;
+				if (this.wd == 1) {
+				this.x -= this.dx + this.ws;
+				}else{
+				this.x -= this.dx - this.ws;
+				}
 			}			
 				this.draw();
 		}
@@ -97,7 +104,7 @@
 		}
 	}
 
-	function Airport(x,y, dx, gx, al){
+	function Airport(x,y, dx, gx, al, ws, wd){
 		this.x = x;
 		this.y = y;
 		this.xx = al;
@@ -108,6 +115,8 @@
 		this.finish = false;
 		this.ac = "black";
 		this.airport = false;
+		this.ws = ws;
+		this.wd = wd;
 
 		this.draw = function(){
 			c.fillStyle = this.ac;
@@ -134,20 +143,26 @@
 			}
 
 			if (!glider.lnd) {
-				this.x -= this.dx;
+				if (this.wd == 1) {
+				this.x -= this.dx + this.ws;
+				}else{
+				this.x -= this.dx - this.ws;
+				}
 			}
 			
 			this.draw();
 		}
 	}
 
-	function Background(bg){
+	function Background(bg, ws, wd){
 		this.x = -1280;
 		this.y = 0;
 		this.xx = canvas.width;
 		this.yy = canvas.height;
 		this.dx = 0.7;
 		this.bg = bg;
+		this.ws = ws;
+		this.wd = wd;
 
 		this.update = function(){
 			c.drawImage(this.bg, this.x, this.y);
@@ -155,10 +170,13 @@
 				this.dx = -this.dx;
 				this.key = false;
 			}
-
 			if (!glider.lnd) {
-				this.x -= this.dx;
-			}
+				if (this.wd == 1) {
+				this.x -= this.dx + this.ws + this.dx;
+				}else{
+				this.x -= this.dx - this.ws + this.dx;
+				}
+			}	
 
 			if (this.x <= -this.xx*2) {
 				this.x = -this.xx;
@@ -170,7 +188,7 @@
 		}
 	}
 
-	function Turnpoint(x,y, dx, gx, tc, tc2){
+	function Turnpoint(x,y, dx, gx, tc, tc2, ws, wd){
 		this.x = x;
 		this.y = y;
 		this.xx = 1;
@@ -180,6 +198,8 @@
 		this.tp = false;
 		this.tc = tc;
 		this.tc2 = tc2;
+		this.ws = ws;
+		this.wd = wd;
 
 		this.draw = function(){
 			c.fillStyle = this.tc;
@@ -199,7 +219,11 @@
 			}
 
 			if (!glider.lnd) {
-				this.x -= this.dx;
+				if (this.wd == 1) {
+				this.x -= this.dx + this.ws;
+				}else{
+				this.x -= this.dx - this.ws;
+				}
 			}
 			this.draw();
 		}

@@ -1,6 +1,6 @@
 let flightMinutes,flightSeconds,score,totalScore,canvas,c,cloud,
 	bg,gliderRight,gliderLeft,gx,background,glider,airport,turnpoint,
-	startLine,displayTimer,timer,toggleBtn,resetBtn,watch,timerMilliseconds,timerSeconds,timerMinutes;
+	startLine,displayTimer,timer,toggleBtn,resetBtn,watch,timerMilliseconds,timerSeconds,timerMinutes, windDirection;
 
 
 let cloudPositionY = 0,
@@ -21,6 +21,7 @@ let cloudPositionY = 0,
 	startlinePosition = 1000,
 	flightStarted = false,
 	thermalArray = [],
+	windStrength = 0.6,
 
 	thermalStrength2 = [1, 0.4, 0.5, 0.55, 0.4, 0.6, 0.45, 0.47, 0.41, 0.56, 0.7, 0.3, 0.5, 0.8, 0.6, 0.52],
 
