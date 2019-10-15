@@ -132,11 +132,14 @@
 		this.airport = false;
 		this.ws = ws;
 		this.wd = wd;
+		this.imgX;
 
 		this.draw = function(){
+			c.drawImage(this.img, this.imgX, this.y, 50, -53);
 			c.fillStyle = this.ac;
 			c.stroke();
-			c.fillRect(this.x, this.y, this.xx, this.yy)
+			c.fillRect(this.x, this.y, this.xx, this.yy);
+
 		}
 
 		this.update = function(){
@@ -163,6 +166,14 @@
 				}else{
 				this.x -= this.dx - this.ws;
 				}
+			}
+
+			if (this.wd == 1) {
+				this.img = windsockright;
+				this.imgX = this.x;
+			}else{
+				this.img = windsockleft;
+				this.imgX = this.x - 30;
 			}
 			
 			this.draw();

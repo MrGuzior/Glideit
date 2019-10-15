@@ -7,10 +7,14 @@
 	bg = new Image();
 	gliderRight = new Image();
 	gliderLeft = new Image();
+	windsockright = new Image();
+	windsockleft = new Image();
 	cloud.src = "cloud.png";
 	bg.src = "background.png";
 	gliderRight.src = "gliderright.png";
 	gliderLeft.src = "gliderleft.png";
+	windsockright.src = "windsockright.png";
+	windsockleft.src = "windsockleft.png";
 
 	(function init(){
 		thermalArray = [];
