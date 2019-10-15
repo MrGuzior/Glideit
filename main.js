@@ -44,7 +44,7 @@
 			background.key = true;
 			glider.key = true;
 			startLine.key = true;
-		}	
+		}
 	}
 
 	(function animate(){

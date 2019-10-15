@@ -66,7 +66,7 @@
 		this.th = th;
 		this.ws = ws;
 		this.wd = wd;
-		this.td = (this.y-this.th)*this.ws*1.5;
+		this.td = ((this.y-this.th)*this.ws*1.5);
 
 		this.draw = function (){
 			c.drawImage(this.drc, this.x, this.y,this.xx,this.yy);
@@ -78,18 +78,24 @@
 				this.y = canvas.height - this.yy;
 				this.dy = this.dy - this.dy;
 				this.lnd = true;
-			}			
+			}
+
+			//gliderBefore = this.y;
+			this.gb = this.y;			
 
 			for (var i = 0; i < thermalArray.length; i++) {
 				if (this.wd == 1) {
 					if (thermalArray[i].x + this.td <= this.x&&
-					 thermalArray[i].x  + (this.thermal.width - this.xx)+ this.td >= this.x&&
+					 thermalArray[i].x  + (this.thermal.width - this.xx) + this.td >= this.x&&
 					 this.lnd == false) {
 					 this.y -= this.dy + thermalArray[i].ts;
 
 						if (thermalArray[i].y >= this.y- this.th) {
 							this.y = this.dy - thermalArray[i].ts + this.th;
 						}
+					//////////
+					
+					//////////
 					}
 				}else{
 					if (thermalArray[i].x - this.td <= this.x&&
@@ -102,7 +108,6 @@
 						}
 					}
 				}
-
 			}
 			if (this.key) {
 				this.val = -this.val;
@@ -116,6 +121,28 @@
 			}
 				this.draw();
 				this.y += this.dy;
+
+				this.ga = this.y;
+				
+			if(this.gb > this.ga){
+				this.v = true;
+			}else{
+				this.v = false;
+			}
+
+			for (var i = 0; i < thermalArray.length; i++){
+				if(this.v){
+					thermalArray[i].xx = cloudWidth;
+					thermalArray[i].yy = cloudHeigth;
+						thermalArray[i].xx += -((this.y-canvas.height-this.yy)+cloudWidth)*1.3;
+						thermalArray[i].yy += -((this.y-canvas.height-this.yy)+cloudWidth)*0.8;
+				}else{
+					thermalArray[i].xx = cloudWidth;
+					thermalArray[i].yy = cloudHeigth;
+						thermalArray[i].xx += -((this.y-canvas.height-this.yy)+cloudWidth)*1.3;
+						thermalArray[i].yy += -((this.y-canvas.height-this.yy)+cloudWidth)*0.8;
+				}
+			}
 		}
 	}
 
