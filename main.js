@@ -86,8 +86,8 @@
 		if (glider.lnd && !airport.finish) {
 			stop();
 			calcScore(score, flightSeconds, flightMinutes, cloudCount, startlinePosition, turnpointPosition);
-			//window.alert("Outlanding, try again! ");
-			//location.reload();
+			window.alert("Outlanding, try again! ");
+			location.reload();
 		}
 	}
 	function startScore(){
