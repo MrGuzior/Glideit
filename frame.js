@@ -195,7 +195,7 @@
 
 	function Background(bg, ws, wd){
 		this.bg = bg;
-		this.x = 0;
+		this.x = -1280;
 		this.y = -canvas.height/2;
 		this.xx = canvas.width;
 		this.yy = canvas.height;
@@ -218,11 +218,11 @@
 			}	
 
 			if (this.x <= -this.xx*2) {
-				this.x = -this.xx;
+				this.x = -this.xx + this.xx/2;
 			}
 
 			if (this.x >= 0) {
-				this.x = -this.xx;
+				this.x = -this.xx - this.xx/2;
 			}
 
 			if (glider.y < 450 && glider.y > 255) {
