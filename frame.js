@@ -9,9 +9,10 @@
 	function drawTimer(){
 		this.update = function(){
 			if(flightStarted){
+				c.save();
 				c.font = "40px Arial";
-				c.fillStyle = "#000";
 				c.fillText(timerMinutes + " : " + timerSeconds + " : " + timerMilliseconds, 20, 50);
+				c.restore();
 			}
 		}
 	}
@@ -28,7 +29,9 @@
 		this.wd = wd;
 		
 		this.draw = function(){
+			c.save();
 			c.drawImage(cloud, this.x, this.y, this.xx, this.yy);
+			c.restore();
 		}
 
 		this.update = function(){
@@ -70,7 +73,9 @@
 		this.td = ((this.y-this.th)*this.ws*1.5);
 
 		this.draw = function (){
+			c.save();
 			c.drawImage(this.drc, this.x, this.y,this.xx,this.yy);
+			c.restore();
 		}
 
 		this.update = function(){
@@ -148,10 +153,12 @@
 		this.imgX;
 
 		this.draw = function(){
+			c.save();
 			c.drawImage(this.img, this.imgX, this.y, 50, -53);
 			c.fillStyle = this.ac;
 			c.stroke();
 			c.fillRect(this.x, this.y, this.xx, this.yy);
+			c.restore();
 
 		}
 
@@ -204,7 +211,9 @@
 		this.wd = wd;
 
 		this.update = function(){
+			c.save();
 			c.drawImage(this.bg, this.x, this.y, this.bg.width*1.5, this.bg.height*1.5);
+			c.restore();
 			if (this.key) {
 				this.dx = -this.dx;
 				this.key = false;
@@ -247,9 +256,11 @@
 		this.wd = wd;
 
 		this.draw = function(){
+			c.save();
 			c.fillStyle = this.tc;
 			c.stroke();
-			c.fillRect(this.x, this.y, this.xx, this.yy)
+			c.fillRect(this.x, this.y, this.xx, this.yy);
+			c.restore();
 		}
 
 		this.update = function(){
