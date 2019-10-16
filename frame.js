@@ -125,8 +125,8 @@
 						thermalArray[i].yy -= ((this.y-canvas.height-this.yy)+this.tw)*0.8;
 				}
 			}
-			
-			if(this.y < 450){
+
+			if(this.y < 450 && this.y > 255){
 				this.scale();
 			}
 		}
@@ -194,17 +194,17 @@
 	}
 
 	function Background(bg, ws, wd){
-		this.x = -1280;
-		this.y = 0;
+		this.bg = bg;
+		this.x = 0;
+		this.y = -canvas.height/2;
 		this.xx = canvas.width;
 		this.yy = canvas.height;
 		this.dx = 0.7;
-		this.bg = bg;
 		this.ws = ws;
 		this.wd = wd;
 
 		this.update = function(){
-			c.drawImage(this.bg, this.x, this.y);
+			c.drawImage(this.bg, this.x, this.y, this.bg.width*1.5, this.bg.height*1.5);
 			if (this.key) {
 				this.dx = -this.dx;
 				this.key = false;
@@ -223,6 +223,12 @@
 
 			if (this.x >= 0) {
 				this.x = -this.xx;
+			}
+
+			if (glider.y < 450 && glider.y > 255) {
+				this.y = -canvas.height/2 + 387;
+				this.y -= glider.y/1.2;
+				airport.y = this.y + 885;
 			}
 		}
 	}
