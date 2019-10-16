@@ -63,6 +63,7 @@
 		this.right = gliderRight;
 		this.left = gliderLeft;
 		this.val = 1;
+		this.tw = tw;
 		this.th = th;
 		this.ws = ws;
 		this.wd = wd;
@@ -78,10 +79,7 @@
 				this.y = canvas.height - this.yy;
 				this.dy = this.dy - this.dy;
 				this.lnd = true;
-			}
-
-			//gliderBefore = this.y;
-			this.gb = this.y;			
+			}		
 
 			for (var i = 0; i < thermalArray.length; i++) {
 				if (this.wd == 1) {
@@ -93,9 +91,6 @@
 						if (thermalArray[i].y >= this.y- this.th) {
 							this.y = this.dy - thermalArray[i].ts + this.th;
 						}
-					//////////
-					
-					//////////
 					}
 				}else{
 					if (thermalArray[i].x - this.td <= this.x&&
@@ -122,26 +117,17 @@
 				this.draw();
 				this.y += this.dy;
 
-				this.ga = this.y;
-				
-			if(this.gb > this.ga){
-				this.v = true;
-			}else{
-				this.v = false;
-			}
-
+		this.scale = function(){
 			for (var i = 0; i < thermalArray.length; i++){
-				if(this.v){
-					thermalArray[i].xx = cloudWidth;
-					thermalArray[i].yy = cloudHeigth;
-						thermalArray[i].xx += -((this.y-canvas.height-this.yy)+cloudWidth)*1.3;
-						thermalArray[i].yy += -((this.y-canvas.height-this.yy)+cloudWidth)*0.8;
-				}else{
-					thermalArray[i].xx = cloudWidth;
-					thermalArray[i].yy = cloudHeigth;
-						thermalArray[i].xx += -((this.y-canvas.height-this.yy)+cloudWidth)*1.3;
-						thermalArray[i].yy += -((this.y-canvas.height-this.yy)+cloudWidth)*0.8;
+					thermalArray[i].xx = this.tw;
+					thermalArray[i].yy = this.th;
+						thermalArray[i].xx -= ((this.y-canvas.height-this.yy)+this.tw)*1.3;
+						thermalArray[i].yy -= ((this.y-canvas.height-this.yy)+this.tw)*0.8;
 				}
+			}
+			
+			if(this.y < 450){
+				this.scale();
 			}
 		}
 	}
