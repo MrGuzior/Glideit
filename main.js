@@ -38,6 +38,16 @@
 
 	addEventListener('keydown', checkKeyPress);
 	addEventListener('touchstart',checkKeyPress);
+	canvas.addEventListener('click', buttonClick);
+
+	function buttonClick(event){
+		cx = event.pageX;
+		cy = event.pageY;
+		if (cx >= restartButton.x && cx <= restartButton.x + restartButton.xx &&
+			cy >= restartButton.y && cy <= restartButton.y + restartButton.yy) {
+			location.reload();
+		}
+	}
 
 	function checkKeyPress(){
 		for (var i = 0; i < thermalArray.length; i++) {
