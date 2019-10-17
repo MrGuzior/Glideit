@@ -9,12 +9,12 @@
 	gliderLeft = new Image();
 	windsockright = new Image();
 	windsockleft = new Image();
-	cloud.src = "cloud.png";
-	bg.src = "background.png";
-	gliderRight.src = "gliderright.png";
-	gliderLeft.src = "gliderleft.png";
-	windsockright.src = "windsockright.png";
-	windsockleft.src = "windsockleft.png";
+	cloud.src = "img/cloud.png";
+	bg.src = "img/background.png";
+	gliderRight.src = "img/gliderright.png";
+	gliderLeft.src = "img/gliderleft.png";
+	windsockright.src = "img/windsockright.png";
+	windsockleft.src = "img/windsockleft.png";
 
 	(function init(){
 		thermalArray = [];
