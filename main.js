@@ -33,6 +33,9 @@
 	startLine = new Turnpoint(startlinePosition, 100, paceX, gliderPositionX, "green", "#ffffff00", windStrength, windDirection);
 	displayTimer = new drawTimer();
 
+	restartButton = new Button(canvas.width - 150, 20, 132, 40, "Restart", null, "32px Courier New", "#000", 28);
+	menuButton = new Button(canvas.width - 150, 65, 132, 40, "Menu", null, "32px Courier New", "#000", 28);
+
 	addEventListener('keydown', checkKeyPress);
 	addEventListener('touchstart',checkKeyPress);
 
@@ -61,12 +64,14 @@
 		}
 		for (var i = 0; i < thermalArray.length; i++) {
 			thermalArray[i].update();
-		}
+		}	
 		displayTimer.update();
 		glider.update();
 		airport.update();
 		turnpoint.update();
 		startLine.update();
+		restartButton.update();
+		menuButton.update();
 		startScore();
 	})();
 

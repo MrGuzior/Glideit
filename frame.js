@@ -76,6 +76,7 @@
 			c.save();
 			c.drawImage(this.drc, this.x, this.y,this.xx,this.yy);
 			c.restore();
+			
 		}
 
 		this.update = function(){
@@ -281,6 +282,36 @@
 				this.x -= this.dx - this.ws;
 				}
 			}
+			this.draw();
+		}
+	}
+
+	function Button(x, y, xx, yy, str, img, fnt, clr, ajs){
+		this.x = x;
+		this.y = y;
+		this.xx = xx;
+		this.yy = yy;
+		this.str = str;
+		this.img = img;
+		this.fnt = fnt;
+		this.ajs = ajs;
+		this.clr = clr;
+
+		this.draw = function(){
+			c.save();
+			c.beginPath();
+			c.rect(this.x, this.y, this.xx, this.yy);
+			c.strokeStyle = this.clr;
+			c.stroke();
+			c.restore();
+			c.save();
+			c.font = this.fnt;
+			c.fillText(this.str, this.x, this.y + this.ajs);
+			c.restore();
+		}
+
+		this.update = function(){	
+			this.draw();
 			this.draw();
 		}
 	}
