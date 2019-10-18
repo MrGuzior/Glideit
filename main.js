@@ -1,4 +1,4 @@
-(function main(){
+function main(){
 	addEventListener('keydown', checkKeyPress);
 	addEventListener('touchstart',checkKeyPress);
 	canvas.addEventListener('click', buttonClick);
@@ -74,4 +74,4 @@
 			start();
 		}
 	}
-})();
+}

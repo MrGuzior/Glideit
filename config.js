@@ -21,7 +21,9 @@ let cloudPositionY = 0,
 	startlinePosition = 1000,
 	flightStarted = false,
 	thermalArray = [],
-	windStrength = 0.7,
+	windStrength = 0,
+	menu = true,
+	game = false,
 
 	thermalStrength1 = [1, 1, 0.5, 0.55, 0.4, 0.6, 0.45, 0.47, 0.41, 0.56, 0.7, 0.3, 0.5, 0.8, 0.6, 0.52],
 

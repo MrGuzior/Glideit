@@ -286,7 +286,7 @@
 		}
 	}
 
-	function Button(x, y, xx, yy, str, img, fnt, clr, ajs){
+	function Button(x, y, xx, yy, str, img, fnt, clr, ajsX, ajsY){
 		this.x = x;
 		this.y = y;
 		this.xx = xx;
@@ -294,7 +294,8 @@
 		this.str = str;
 		this.img = img;
 		this.fnt = fnt;
-		this.ajs = ajs;
+		this.ajsY = ajsY;
+		this.ajsX = ajsX;
 		this.clr = clr;
 
 		this.draw = function(){
@@ -306,7 +307,7 @@
 			c.restore();
 			c.save();
 			c.font = this.fnt;
-			c.fillText(this.str, this.x, this.y + this.ajs);
+			c.fillText(this.str, this.x + this.ajsX, this.y + this.ajsY);
 			c.restore();
 		}
 
