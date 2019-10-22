@@ -286,7 +286,7 @@
 		}
 	}
 
-	function Button(x, y, xx, yy, str, img, fnt, clr, ajsX, ajsY){
+	function Button(x, y, xx, yy, str, img, fnt, clr, ajsX, ajsY, state){
 		this.x = x;
 		this.y = y;
 		this.xx = xx;
@@ -297,6 +297,7 @@
 		this.ajsY = ajsY;
 		this.ajsX = ajsX;
 		this.clr = clr;
+		this.state = state;
 
 		this.draw = function(){
 			c.save();
@@ -314,6 +315,13 @@
 		this.update = function(){	
 			this.draw();
 			this.draw();
+		}
+
+		this.click = function(){
+			if (cx >= this.x && cx <= this.x + this.xx &&
+				cy >= this.y && cy <= this.y + this.yy && this.state) {
+					return true;
+			}
 		}
 	}
 

@@ -6,10 +6,14 @@ function main(){
 	function buttonClick(event){
 		cx = event.pageX;
 		cy = event.pageY;
-		if (cx >= restartButton.x && cx <= restartButton.x + restartButton.xx &&
-			cy >= restartButton.y && cy <= restartButton.y + restartButton.yy) {
+		if (restartButton.click) {
 			location.reload();
 		}
+		if (menuButton.click) {
+			game = false;
+			menu = true;
+		}
+
 	}
 
 	function checkKeyPress(){

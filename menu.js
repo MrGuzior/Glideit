@@ -4,8 +4,8 @@
 	function buttonClick(event){
 		cx = event.pageX;
 		cy = event.pageY;
-		if (cx >= newGameButton.x && cx <= newGameButton.x + newGameButton.xx &&
-			cy >= newGameButton.y && cy <= newGameButton.y + newGameButton.yy) {
+		if (newGameButton.click) {
+			menu = false;
 			game = true;
 			main();
 		}
@@ -13,16 +13,18 @@
 
 	(function animate(){
 		c.clearRect(0,0,innerWidth, innerHeight);
-		menuBackground.update();
-		newGameButton.update();
-		tutorialButton.update();
-		highscoresButton.update();
-		settingsButton.update();
+		if (menu) {
+			menuBackground.update();
+			newGameButton.update();
+			tutorialButton.update();
+			highscoresButton.update();
+			settingsButton.update();
 			requestAnimationFrame(animate);
-		for (var i = 0; i < thermalArray.length; i++) {
-			thermalArray[i].update();
-		}
-		menuGlider.update();
+				for (var i = 0; i < thermalArray.length; i++) {
+					thermalArray[i].update();
+				}
+			menuGlider.update();
+		}	
 		if (game) {
 			newGameButton = null;
 			tutorialButton = null;

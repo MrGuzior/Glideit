@@ -8,7 +8,7 @@ let cloudPositionY = 0,
 	maxCloudPositionY = 70,
 	cloudWidth = 375,
 	cloudHeigth = 217,
-	paceX = 4.2,
+	paceX = 5.2,
 	gliderPaceY = 0.65,
 	gliderStartY = 300,
 	gliderPositionX = 577.5,
@@ -33,7 +33,7 @@ let cloudPositionY = 0,
 
 	thermalStrength4 = [0.8, 0.3, 0.4, 0.35, 0.4, 0.6, 0.35, 0.47, 0.35, 0.46, 0.5, 0.4, 0.43, 0.61, 0.51, 0.52],
 
-	thermalStrength5 = [0.8, 0.3, 0.4, 0.45, 0.4, 0.6, 0.35, 0.47, 0.35, 0.46, 0.5, 0.4, 0.43, 0.61, 0.51, 0.52],
+	thermalStrength5 = [0.8, 0.3, 0.4, 0.45, 0.4, 0.6, 0.45, 0.47, 0.45, 0.46, 0.5, 0.4, 0.43, 0.61, 0.51, 0.52],
 
 	thermalSeparation1 = [-10000 ,-6000, 0, 1300, 2400, 3200, 3900, 4900, 5200, 5800, 6200, 7100, 8000],
 
