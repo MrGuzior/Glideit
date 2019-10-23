@@ -17,7 +17,7 @@
 		}
 	}
 
-	function Thermal(x, y, dx, xx, yy, ta, ts, ws, wd){
+	function Thermal(x, y, dx, xx, yy, ta, ts, ws, wd, gd){
 		this.x = x;
 		this.y = y;
 		this.dx = dx;
@@ -27,6 +27,7 @@
 		this.ts = ts;
 		this.ws = ws;
 		this.wd = wd;
+		this.gd = gd;
 		
 		this.draw = function(){
 			c.save();
@@ -111,7 +112,7 @@
 					}
 				}
 			}
-			
+
 			if (this.key) {
 				this.val = -this.val;
 				this.key = false;
@@ -140,7 +141,7 @@
 		}
 	}
 
-	function Airport(x,y, dx, gx, al, ws, wd){
+	function Airport(x,y, dx, gx, al, ws, wd, gd, tp){
 		this.x = x;
 		this.y = y;
 		this.xx = al;
@@ -153,6 +154,8 @@
 		this.airport = false;
 		this.ws = ws;
 		this.wd = wd;
+		this.gd = gd;
+		this.tp = tp;
 		this.imgX;
 
 		this.draw = function(){
@@ -172,18 +175,18 @@
 			}
 
 			if (this.x <= this.gx &&
-				this.x + this.al / 2 >= this.gx - glider.xx/2 && glider.lnd && turnpoint.tp) {		
+				this.x + this.al / 2 >= this.gx - this.gd.xx/2 && this.gd.lnd && this.tp.tp) {		
 				this.finish = true;
 				this.ac = "green";
 			}
 
 			if (this.x <= this.gx &&
-				this.x + this.al / 2 >= this.gx - glider.xx/2 && glider.lnd && !turnpoint.tp) {		
+				this.x + this.al / 2 >= this.gx - this.gd.xx/2 && this.gd.lnd && !this.tp.tp) {		
 				this.airport = true;
 				this.ac = "red";
 			}
 
-			if (!glider.lnd) {
+			if (!this.gd.lnd) {
 				if (this.wd == 1) {
 				this.x -= this.dx + this.ws;
 				}else{
@@ -203,7 +206,7 @@
 		}
 	}
 
-	function Background(bg, ws, wd){
+	function Background(bg, ws, wd, gd, ap){
 		this.bg = bg;
 		this.x = -1280;
 		this.y = -canvas.height/2;
@@ -212,6 +215,8 @@
 		this.dx = 0.7;
 		this.ws = ws;
 		this.wd = wd;
+		this.gd = gd;
+		this.ap = ap;
 
 		this.update = function(){
 			c.save();
@@ -221,7 +226,7 @@
 				this.dx = -this.dx;
 				this.key = false;
 			}
-			if (!glider.lnd) {
+			if (!this.gd.lnd) {
 				if (this.wd == 1) {
 				this.x -= this.dx + this.ws + this.dx;
 				}else{
@@ -237,15 +242,15 @@
 				this.x = -this.xx - this.xx/2;
 			}
 
-			if (glider.y < 450 && glider.y > 255) {
+			if (this.gd.y < 450 && this.gd.y > 255) {
 				this.y = -canvas.height/2 + 387;
-				this.y -= glider.y/1.2;
-				airport.y = this.y + 885;
+				this.y -= this.gd.y/1.2;
+				this.ap.y = this.y + 885;
 			}
 		}
 	}
 
-	function Turnpoint(x,y, dx, gx, tc, tc2, ws, wd){
+	function Turnpoint(x,y, dx, gx, tc, tc2, ws, wd, gd){
 		this.x = x;
 		this.y = y;
 		this.xx = 1;
@@ -257,6 +262,7 @@
 		this.tc2 = tc2;
 		this.ws = ws;
 		this.wd = wd;
+		this.gd = gd;
 
 		this.draw = function(){
 			c.save();
