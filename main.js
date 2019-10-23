@@ -5,7 +5,8 @@ function main(){
 
 	function buttonClick(event){
 		if (restartButton.click(event)) {
-			location.reload();
+			//location.reload();
+			restart();
 		}
 		if (menuButton.click(event)) {
 			location.reload();
@@ -68,10 +69,35 @@ function main(){
 			location.reload();
 		}
 	}
+
 	function startScore(){
 		if (startLine.x < gliderPositionX && !flightStarted) {
 			flightStarted = true;
 			start();
 		}
+	}
+
+	function restart(){
+		glider = null;
+		turnpoint = null;
+		airport = null;
+		background = null;
+		startLine = null;
+		displayTimer = null;
+		restartButton = null;
+		menuButton = null;
+		thermalArray = [];
+		for (var i = 0; i < cloudCount; i++) {
+			thermalArray.push(new Thermal
+				(thermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, cloudCount, thermalStrength[i], windStrength, windDirection, glider));
+		}
+		glider = new Glider(gliderPositionX, gliderStartY, gliderPaceY, cloudWidth, cloudHeigth, cloudCount, windStrength, windDirection, thermalArray);
+		turnpoint = new Turnpoint(turnpointPosition, 100, paceX, gliderPositionX, "red", "green", windStrength, windDirection, glider);
+		airport = new Airport(airportPosition,canvas.height - 3, paceX, gliderPositionX, airportLength, windStrength, windDirection, glider, turnpoint);
+		background = new Background(bg, windStrength, windDirection, glider, airport);
+		startLine = new Turnpoint(startlinePosition, 100, paceX, gliderPositionX, "green", "#ffffff00", windStrength, windDirection);
+		displayTimer = new drawTimer();
+		restartButton = new Button(canvas.width - 150, 20, 132, 40, "Restart", null, "32px Courier New", "#000", 0, 28, game);
+		menuButton = new Button(canvas.width - 150, 65, 132, 40, "Menu", null, "32px Courier New", "#000", 0, 28, game);
 	}
 }
