@@ -317,9 +317,11 @@
 			this.draw();
 		}
 
-		this.click = function(){
-			if (cx >= this.x && cx <= this.x + this.xx &&
-				cy >= this.y && cy <= this.y + this.yy && this.state) {
+		this.click = function(event){
+			this.cx = event.pageX;
+			this.cy = event.pageY;
+			if (this.cx >= this.x && this.cx <= this.x + this.xx &&
+				this.cy >= this.y && this.cy <= this.y + this.yy/* && this.state*/) {
 					return true;
 			}
 		}

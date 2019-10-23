@@ -4,16 +4,12 @@ function main(){
 	canvas.addEventListener('click', buttonClick);
 
 	function buttonClick(event){
-		cx = event.pageX;
-		cy = event.pageY;
-		if (restartButton.click) {
+		if (restartButton.click(event)) {
 			location.reload();
 		}
-		if (menuButton.click) {
-			game = false;
-			menu = true;
+		if (menuButton.click(event)) {
+			location.reload();
 		}
-
 	}
 
 	function checkKeyPress(){

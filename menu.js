@@ -2,9 +2,7 @@
 	canvas.addEventListener('click', buttonClick);
 
 	function buttonClick(event){
-		cx = event.pageX;
-		cy = event.pageY;
-		if (newGameButton.click) {
+		if (newGameButton.click(event)) {
 			menu = false;
 			game = true;
 			main();
@@ -26,7 +24,8 @@
 			menuGlider.update();
 		}	
 		if (game) {
-			newGameButton = null;
+			newGameButton.xx = 0;
+			newGameButton.yy = 0;
 			tutorialButton = null;
 			highscoresButton = null;
 			settingsButton = null;
