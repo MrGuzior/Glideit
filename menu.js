@@ -36,6 +36,7 @@
 					thermalArray.push(new Thermal
 					(thermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, cloudCount, thermalStrength[i], windStrength, windDirection));
 				}
+				glider.tha = thermalArray;
 			cancelAnimationFrame(animate);
 		}
 	})();

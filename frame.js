@@ -51,7 +51,7 @@
 		}
 	}
 
-	function Glider(x, y, dy, tw, th, ta, ws, wd){
+	function Glider(x, y, dy, tw, th, ta, ws, wd, tha){
 		this.x = x;
 		this.y = y;
 		this.dy = dy;
@@ -71,6 +71,7 @@
 		this.ws = ws;
 		this.wd = wd;
 		this.td = ((this.y-this.th)*this.ws*1.5);
+		this.tha = tha;
 
 		this.draw = function (){
 			c.save();
@@ -87,29 +88,30 @@
 				this.lnd = true;
 			}		
 
-			for (var i = 0; i < thermalArray.length; i++) {
+			for (var i = 0; i < this.tha.length; i++) {
 				if (this.wd == 1) {
-					if (thermalArray[i].x + this.td <= this.x&&
-					 thermalArray[i].x  + (this.thermal.width - this.xx) + this.td >= this.x&&
+					if (this.tha[i].x + this.td <= this.x&&
+					 this.tha[i].x  + (this.thermal.width - this.xx) + this.td >= this.x&&
 					 this.lnd == false) {
-					 this.y -= this.dy + thermalArray[i].ts;
+					 this.y -= this.dy + this.tha[i].ts;
 
-						if (thermalArray[i].y >= this.y- this.th) {
-							this.y = this.dy - thermalArray[i].ts + this.th;
+						if (this.tha[i].y >= this.y- this.th) {
+							this.y = this.dy - this.tha[i].ts + this.th;
 						}
 					}
 				}else{
-					if (thermalArray[i].x - this.td <= this.x&&
-					 thermalArray[i].x - this.td + (this.thermal.width - this.xx)>= this.x&&
+					if (this.tha[i].x - this.td <= this.x&&
+					 this.tha[i].x - this.td + (this.thermal.width - this.xx)>= this.x&&
 					 this.lnd == false) {
-					 this.y -= this.dy + thermalArray[i].ts;
+					 this.y -= this.dy + this.tha[i].ts;
 
-						if (thermalArray[i].y >= this.y- this.th) {
-							this.y = this.dy - thermalArray[i].ts + this.th;
+						if (this.tha[i].y >= this.y- this.th) {
+							this.y = this.dy - this.tha[i].ts + this.th;
 						}
 					}
 				}
 			}
+			
 			if (this.key) {
 				this.val = -this.val;
 				this.key = false;
@@ -124,11 +126,11 @@
 				this.y += this.dy;
 
 		this.scale = function(){
-			for (var i = 0; i < thermalArray.length; i++){
-					thermalArray[i].xx = this.tw;
-					thermalArray[i].yy = this.th;
-						thermalArray[i].xx -= ((this.y-canvas.height-this.yy)+this.tw)*1.3;
-						thermalArray[i].yy -= ((this.y-canvas.height-this.yy)+this.tw)*0.8;
+			for (var i = 0; i < cloudCount; i++){
+					this.tha[i].xx = this.tw;
+					this.tha[i].yy = this.th;
+						this.tha[i].xx -= ((this.y-canvas.height-this.yy)+this.tw)*1.3;
+						this.tha[i].yy -= ((this.y-canvas.height-this.yy)+this.tw)*0.8;
 				}
 			}
 
