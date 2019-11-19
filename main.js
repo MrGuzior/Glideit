@@ -1,11 +1,11 @@
-function main(){
+function Main(rb, mb, ta){
+
 	addEventListener('keydown', checkKeyPress);
 	addEventListener('touchstart',checkKeyPress);
 	canvas.addEventListener('click', buttonClick);
 
 	function buttonClick(event){
 		if (restartButton.click(event)) {
-			//location.reload();
 			restart();
 		}
 		if (menuButton.click(event)) {
@@ -14,8 +14,8 @@ function main(){
 	}
 
 	function checkKeyPress(){
-		for (var i = 0; i < thermalArray.length; i++) {
-			thermalArray[i].key = true;
+		for (var i = 0; i < ta.length; i++) {
+			ta[i].key = true;
 			airport.key = true;
 			turnpoint.key = true;
 			background.key = true;
@@ -36,16 +36,18 @@ function main(){
 		} else {
 			requestAnimationFrame(animate);
 		}
-		for (var i = 0; i < thermalArray.length; i++) {
-			thermalArray[i].update();
+		for (var i = 0; i < ta.length; i++) {
+			ta[i].update();
 		}	
 		displayTimer.update();
 		glider.update();
 		airport.update();
 		turnpoint.update();
 		startLine.update();
-		restartButton.update();
-		menuButton.update();
+		//restartButton.update();
+		//menuButton.update();
+		rb.update();
+		mb.update();
 		startScore();
 	})();
 
@@ -88,7 +90,7 @@ function main(){
 		menuButton = null;
 		thermalArray = [];
 		for (var i = 0; i < cloudCount; i++) {
-			thermalArray.push(new Thermal
+			ta.push(new Thermal
 				(thermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, cloudCount, thermalStrength[i], windStrength, windDirection, glider));
 		}
 		glider = new Glider(gliderPositionX, gliderStartY, gliderPaceY, cloudWidth, cloudHeigth, cloudCount, windStrength, windDirection, thermalArray);

@@ -8,10 +8,11 @@
 
 	function drawTimer(){
 		this.update = function(){
+			timeString = (timerMinutes + " : " + timerSeconds + " : " + timerMilliseconds);
 			if(flightStarted){
 				c.save();
 				c.font = "40px Arial";
-				c.fillText(timerMinutes + " : " + timerSeconds + " : " + timerMilliseconds, 20, 50);
+				c.fillText(timeString, 20, 50);
 				c.restore();
 			}
 		}

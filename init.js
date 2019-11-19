@@ -39,8 +39,11 @@
 		tutorialButton = new Button(canvas.width/2 - 125, canvas.height/2 - 50 + 50, 250, 45, "Tutorial", null, "50px Courier New", "#000", 5, 35, menu);
 		highscoresButton = new Button(canvas.width/2 - 125, canvas.height/2 - 50 + 100, 250, 45, "Highscores", null, "40px Courier New", "#000", 5, 35, menu);
 		settingsButton = new Button(canvas.width/2 - 125, canvas.height/2 - 50 + 150, 250, 45, "Settings", null, "50px Courier New", "#000", 5, 35, menu);
+		emptyButton = new Button(canvas.width/2 - 2000, canvas.height/2 - 50 + 150, 250, 45, "", null, "50px Courier New", "#000", 5, 35, menu);
 	
 		menuGlider = new Glider(gliderPositionX - 300, gliderStartY, gliderPaceY-0.4, cloudWidth, cloudHeigth, cloudCount, windStrength, windDirection, thermalArray);
 		menuBackground = new Background(bg, windStrength, windDirection, menuGlider, airport);
+
+		
 	
 })();
