@@ -1,4 +1,4 @@
-function Main(restartButton, menuButton){
+function Main(){
 
 	addEventListener('keydown', checkKeyPress);
 	addEventListener('touchstart',checkKeyPress);
@@ -44,8 +44,10 @@ function Main(restartButton, menuButton){
 		airport.update();
 		turnpoint.update();
 		startLine.update();
-		restartButton.update();
-		menuButton.update();
+		if(game){
+			restartButton.update();
+			menuButton.update();
+		}
 		startScore();
 	})();
 
