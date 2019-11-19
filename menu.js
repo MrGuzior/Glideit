@@ -63,11 +63,8 @@
 				glider.tha = thermalArray;
 			cancelAnimationFrame(animate);
 
-			mainGame = new Main(restartButton, menuButton, thermalArray);
+			mainGame = new Main(restartButton, menuButton);
 		}
 	})();
-
-	/*function reload(){
-	}*/
 
 })();

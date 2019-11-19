@@ -43,7 +43,5 @@
 	
 		menuGlider = new Glider(gliderPositionX - 300, gliderStartY, gliderPaceY-0.4, cloudWidth, cloudHeigth, cloudCount, windStrength, windDirection, thermalArray);
 		menuBackground = new Background(bg, windStrength, windDirection, menuGlider, airport);
-
-		
 	
 })();

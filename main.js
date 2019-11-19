@@ -1,4 +1,4 @@
-function Main(rb, mb, ta){
+function Main(restartButton, menuButton){
 
 	addEventListener('keydown', checkKeyPress);
 	addEventListener('touchstart',checkKeyPress);
@@ -14,8 +14,8 @@ function Main(rb, mb, ta){
 	}
 
 	function checkKeyPress(){
-		for (var i = 0; i < ta.length; i++) {
-			ta[i].key = true;
+		for (var i = 0; i < thermalArray.length; i++) {
+			thermalArray[i].key = true;
 			airport.key = true;
 			turnpoint.key = true;
 			background.key = true;
@@ -36,18 +36,16 @@ function Main(rb, mb, ta){
 		} else {
 			requestAnimationFrame(animate);
 		}
-		for (var i = 0; i < ta.length; i++) {
-			ta[i].update();
+		for (var i = 0; i < thermalArray.length; i++) {
+			thermalArray[i].update();
 		}	
 		displayTimer.update();
 		glider.update();
 		airport.update();
 		turnpoint.update();
 		startLine.update();
-		//restartButton.update();
-		//menuButton.update();
-		rb.update();
-		mb.update();
+		restartButton.update();
+		menuButton.update();
 		startScore();
 	})();
 
@@ -90,7 +88,7 @@ function Main(rb, mb, ta){
 		menuButton = null;
 		thermalArray = [];
 		for (var i = 0; i < cloudCount; i++) {
-			ta.push(new Thermal
+			thermalArray.push(new Thermal
 				(thermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, cloudCount, thermalStrength[i], windStrength, windDirection, glider));
 		}
 		glider = new Glider(gliderPositionX, gliderStartY, gliderPaceY, cloudWidth, cloudHeigth, cloudCount, windStrength, windDirection, thermalArray);
