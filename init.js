@@ -43,5 +43,9 @@
 	
 		menuGlider = new Glider(gliderPositionX - 300, gliderStartY, gliderPaceY-0.4, cloudWidth, cloudHeigth, cloudCount, windStrength, windDirection, thermalArray);
 		menuBackground = new Background(bg, windStrength, windDirection, menuGlider, airport);
+
+		tutorialTurnpoint = new Turnpoint(3000, 100, paceX, gliderPositionX, "red", "green", windStrength, windDirection, glider);
+		tutorialAirport = new Airport(airportPosition,canvas.height - 3, paceX, gliderPositionX, airportLength, windStrength, windDirection, glider, tutorialTurnpoint);
+
 	
 })();

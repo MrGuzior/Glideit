@@ -44,7 +44,7 @@
 				glider.tha = thermalArray;
 			cancelAnimationFrame(animate);
 
-			tutorialGame = new Main();
+			tutorialGame = new Main(tutorialTurnpoint, tutorialAirport, startLine, thermalArray, background);
 		}
 		if (game) {
 			newGameButton.xx = 0;
@@ -63,7 +63,7 @@
 				glider.tha = thermalArray;
 			cancelAnimationFrame(animate);
 
-			mainGame = new Main();
+			mainGame = new Main(turnpoint, airport, startLine, thermalArray, background);
 		}
 	})();
 

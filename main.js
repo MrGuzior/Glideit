@@ -1,4 +1,4 @@
-function Main(){
+function Main(turnpoint, airport, startLine, thermalArray, background){
 
 	addEventListener('keydown', checkKeyPress);
 	addEventListener('touchstart',checkKeyPress);
@@ -55,7 +55,7 @@ function Main(){
 		if (airport.finish) {
 			stop();
 			let scoreArray = localStorage.getItem("score") ? JSON.parse(localStorage.getItem("score")) : [];
-			calcScore(score, flightSeconds, flightMinutes, cloudCount, startlinePosition, turnpointPosition);
+			calcScore(score, flightSeconds, flightMinutes, cloudCount, startLine.x, turnpoint.x);
 			scoreArray.push(totalScore);
 			localStorage.setItem("score", JSON.stringify(scoreArray));
 			scoreArray.sort(function(a,b){return b-a});
@@ -66,7 +66,7 @@ function Main(){
 		}
 		if (glider.lnd && !airport.finish) {
 			stop();
-			calcScore(score, flightSeconds, flightMinutes, cloudCount, startlinePosition, turnpointPosition);
+			calcScore(score, flightSeconds, flightMinutes, cloudCount, startLine.x, turnpoint.x);
 			window.alert("Outlanding, try again! ");
 			location.reload();
 		}
