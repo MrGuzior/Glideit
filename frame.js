@@ -99,6 +99,7 @@
 
 						if (this.tha[i].y >= this.y- this.th) {
 							this.y = this.dy - this.tha[i].ts + this.th;
+							cloudBase = true;
 						}
 					}
 				}else{
@@ -109,6 +110,7 @@
 
 						if (this.tha[i].y >= this.y- this.th) {
 							this.y = this.dy - this.tha[i].ts + this.th;
+							cloudBase = true;
 						}
 					}
 				}
@@ -333,6 +335,51 @@
 				this.cy >= this.y && this.cy <= this.y + this.yy/* && this.state*/) {
 					return true;
 			}
+		}
+	}
+
+	function Tutorial(x,y, dx, gx, ws, wd, gd, str, fnt){
+		this.x = x;
+		this.y = y;
+		this.dx = dx;
+		this.gx = gx;
+		this.ws = ws;
+		this.wd = wd;
+		this.gd = gd;
+		this.str = str;
+		this.fnt = fnt;
+		this.lh = 35;
+		this.lines = this.str.split('\n')
+		this.vis = false;
+
+		this.draw = function(){
+			c.font = this.fnt;
+			for (var i = 0; i < this.lines.length; i++) {
+			if (this.vis) {
+					c.save();
+					c.fillText(this.lines[i], this.x,this.y + (i*this.lh));
+					c.restore();
+				}
+			}
+		}
+
+		this.update = function(){
+			if (this.key) {
+				this.dx = -this.dx;
+				this.key = false;
+			}
+
+			if (this.x <= this.gx) {
+			}
+
+			if (!glider.lnd) {
+				if (this.wd == 1) {
+				this.x -= this.dx + this.ws;
+				}else{
+				this.x -= this.dx - this.ws;
+				}
+			}
+			this.draw();
 		}
 	}
 

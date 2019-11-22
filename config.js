@@ -10,7 +10,7 @@ let cloudPositionY = 0,
 	cloudHeigth = 217,
 	paceX = 5.2,
 	gliderPaceY = 0.65,
-	gliderStartY = 300,
+	gliderStartY = 400,
 	gliderPositionX = 577.5,
 	cloudCount = 16,
 	minThermalStrength = 0.6,
@@ -26,6 +26,7 @@ let cloudPositionY = 0,
 	menu = true,
 	game = false,
 	tutorial = false,
+	cloudBase = false,
 
 	thermalStrength1 = [1, 1, 0.5, 0.55, 0.4, 0.6, 0.45, 0.47, 0.41, 0.56, 0.7, 0.3, 0.5, 0.8, 0.6, 0.52],
 
@@ -49,4 +50,16 @@ let cloudPositionY = 0,
 	
 	thermalSeparation = thermalSeparation5,
 
+	tutorialThermalSeparation = [700, 1200, 1700, 2500, 3000, 3500, 6900, 8000, 10000, 11000, 12000, 13000, 14000, 15000, 15000, 15000],
+
 	thermalStrength = thermalStrength5;
+
+let tutorialString1 = "Click any button\n to make a turn",
+	tutorialString2 = "Get to the\ncloud base",
+	tutorialString3 = "Fly towards\nthe turnpoint\n      ->",	
+	tutorialString4 = "Timer starts after\ncrossing startline\n     ->",
+	tutorialString5 = "Turn around and fly\ntowards the airport\n      <-",
+	tutorialString6 = "Land within the\nairport boundries",
+	tutorialString7 = "Don't fly past it!",
+	tutorialString8 = "!             !",
+	tutorialFont = "35px Courier New";

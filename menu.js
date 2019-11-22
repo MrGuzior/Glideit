@@ -39,12 +39,12 @@
 			thermalArray = [];
 				for (var i = 0; i < cloudCount; i++) {
 					thermalArray.push(new Thermal
-					(thermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, cloudCount, thermalStrength[i], windStrength, windDirection, glider));
+					(tutorialThermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, cloudCount, thermalStrength[i], windStrength, windDirection, glider));
 				}
 				glider.tha = thermalArray;
 			cancelAnimationFrame(animate);
 
-			tutorialGame = new Main(tutorialTurnpoint, tutorialAirport, startLine, thermalArray, background);
+			tutorialGame = new Main(tutorialTurnpoint, tutorialAirport, tutorialStartLine, thermalArray, tutorialBackground);
 		}
 		if (game) {
 			newGameButton.xx = 0;
