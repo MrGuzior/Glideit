@@ -30,7 +30,9 @@ function Main(turnpoint, airport, startLine, thermalArray, background){
 			tutorial7.key = true;
 			tutorial8.key = true;
 
-			tutorialStar.key = true;
+			tutorialStar1.key = true;
+			tutorialStar2.key = true;
+			tutorialStar3.key = true;
 		}
 	}
 
@@ -86,7 +88,9 @@ function Main(turnpoint, airport, startLine, thermalArray, background){
 				tutorial7.update();
 				tutorial8.update();
 
-				tutorialStar.update();
+				tutorialStar1.update();
+				tutorialStar2.update();
+				tutorialStar3.update();
 		}
 		startScore();
 	})();

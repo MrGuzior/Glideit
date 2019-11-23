@@ -52,6 +52,8 @@ let cloudPositionY = 0,
 
 	tutorialThermalSeparation = [-300, 900, 1500, 1700, 2400, 3400, 3900, 4400, 4900, 5400, 5900, 13000, 14000, 15000, 15000, 15000],
 
+	tutorialThermalStrength = thermalStrength5,
+
 	thermalStrength = thermalStrength5;
 
 let tutorialString1 = "Click any button\n to make a turn\n       ->",
