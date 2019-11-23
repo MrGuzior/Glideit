@@ -8,7 +8,7 @@ let cloudPositionY = 0,
 	maxCloudPositionY = 70,
 	cloudWidth = 375,
 	cloudHeigth = 217,
-	paceX = 5.2,
+	paceX = 5.3,
 	gliderPaceY = 0.65,
 	gliderStartY = 400,
 	gliderPositionX = 577.5,
@@ -50,16 +50,16 @@ let cloudPositionY = 0,
 	
 	thermalSeparation = thermalSeparation5,
 
-	tutorialThermalSeparation = [700, 1200, 1700, 2500, 3000, 3500, 6900, 8000, 10000, 11000, 12000, 13000, 14000, 15000, 15000, 15000],
+	tutorialThermalSeparation = [-300, 900, 1500, 1700, 2400, 3400, 3900, 4400, 4900, 5400, 5900, 13000, 14000, 15000, 15000, 15000],
 
 	thermalStrength = thermalStrength5;
 
-let tutorialString1 = "Click any button\n to make a turn",
-	tutorialString2 = "Get to the\ncloud base",
+let tutorialString1 = "Click any button\n to make a turn\n       ->",
+	tutorialString2 = "Turn here to\ngain altitude",
 	tutorialString3 = "Fly towards\nthe turnpoint\n      ->",	
-	tutorialString4 = "Timer starts after\ncrossing startline\n     ->",
-	tutorialString5 = "Turn around and fly\ntowards the airport\n      <-",
-	tutorialString6 = "Land within the\nairport boundries",
-	tutorialString7 = "Don't fly past it!",
-	tutorialString8 = "!             !",
+	tutorialString4 = "Timer starts after\ncrossing startline\n       ->",
+	tutorialString5 = "Turn around and fly\ntowards the airport\n       <-",
+	tutorialString6 = "Land within the\nairport boundries\n     <-",
+	tutorialString7 = "Don't fly past it!\n   <-",
+	tutorialString8 = "!   airport   !",
 	tutorialFont = "35px Courier New";

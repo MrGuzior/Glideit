@@ -44,19 +44,19 @@
 		menuGlider = new Glider(gliderPositionX - 300, gliderStartY, gliderPaceY-0.4, cloudWidth, cloudHeigth, cloudCount, windStrength, windDirection, thermalArray);
 		menuBackground = new Background(bg, windStrength, windDirection, menuGlider, airport);
 
-		tutorialTurnpoint = new Turnpoint(3500, 100, paceX, gliderPositionX, "red", "green", windStrength, windDirection, glider);
+		tutorialTurnpoint = new Turnpoint(4500, 100, paceX, gliderPositionX, "red", "green", windStrength, windDirection, glider);
 		tutorialAirport = new Airport(airportPosition,canvas.height - 3, paceX, gliderPositionX, airportLength, windStrength, windDirection, glider, tutorialTurnpoint);
 		tutorialBackground = new Background(bg, windStrength, windDirection, glider, tutorialAirport);
-		tutorialStartLine = new Turnpoint(1500, 100, paceX, gliderPositionX, "green", "#ffffff00", windStrength, windDirection);
+		tutorialStartLine = new Turnpoint(2500, 100, paceX, gliderPositionX, "green", "#ffffff00", windStrength, windDirection);
 		tutorialGlider = new Glider(gliderPositionX, gliderStartY, gliderPaceY, cloudWidth, cloudHeigth, cloudCount, windStrength, windDirection, thermalArray);
 
-		tutorial1 = new Tutorial(400, 100, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString1, tutorialFont);
-		tutorial2 = new Tutorial(1000, 100, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString2, tutorialFont);
-		tutorial3 = new Tutorial(700, 400, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString3, tutorialFont);
-		tutorial4 = new Tutorial(1500, 300, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString4, tutorialFont);
-		tutorial5 = new Tutorial(3560, 300, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString5, tutorialFont);
-		tutorial6 = new Tutorial(1500, 300, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString6, tutorialFont);
-		tutorial7 = new Tutorial(800, 400, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString7, tutorialFont);
+		tutorial1 = new Tutorial(700, 170, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString1, tutorialFont);
+		tutorial2 = new Tutorial(1650, 100, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString2, tutorialFont);
+		tutorial3 = new Tutorial(2600, 400, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString3, tutorialFont);
+		tutorial4 = new Tutorial(1700, 300, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString4, tutorialFont);
+		tutorial5 = new Tutorial(4560, 300, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString5, tutorialFont);
+		tutorial6 = new Tutorial(2500, 300, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString6, tutorialFont);
+		tutorial7 = new Tutorial(1800, 400, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString7, tutorialFont);
 		tutorial8 = new Tutorial(277, 500, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString8 , tutorialFont);
 
 })();
