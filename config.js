@@ -1,7 +1,7 @@
 let flightMinutes,flightSeconds,score,totalScore,canvas,c,cloud,
 	bg,gliderRight,gliderLeft,gx,background,glider,airport,turnpoint,
 	startLine,displayTimer,timer,toggleBtn,resetBtn,watch,timerMilliseconds,
-	timerSeconds,timerMinutes, windDirection, ts, windsockright, windsockleft, cx, cy, timeString;
+	timerSeconds,timerMinutes, windDirection, ts, windsockright, windsockleft, cx, cy, timeString, star;
 
 let cloudPositionY = 0,
 	minCloudPositionY = 40,

@@ -383,6 +383,53 @@
 		}
 	}
 
+	function Checkpoint(x,y, dx, gx, ws, wd, gd, img){
+		this.x = x;
+		this.y = y;
+		this.xx = 50;
+		this.yy = 50;
+		this.dx = dx;
+		this.gx = gx;
+		this.ws = ws;
+		this.wd = wd;
+		this.gd = gd;
+		this.img = img;
+		this.vis = true;
+
+		this.draw = function(){
+			if (this.vis) {
+				c.save();
+				c.drawImage(star, this.x, this.y, this.xx, this.yy);
+				c.restore();
+			}
+		}
+
+		this.update = function(){
+
+			if (this.x <= this.gx && this.x + this.xx / 2 >= this.gx - this.gd.xx/2 
+				&& this.y <= this.gd.y && this.y + this.yy /2 >= this.gd.y) {
+				this.vis = false;
+			}
+
+			if (this.key) {
+				this.dx = -this.dx;
+				this.key = false;
+			}
+
+			if (this.x <= this.gx) {
+			}
+
+			if (!glider.lnd) {
+				if (this.wd == 1) {
+				this.x -= this.dx + this.ws;
+				}else{
+				this.x -= this.dx - this.ws;
+				}
+			}
+			this.draw();
+		}
+	}
+
 	function calcScore(score, fs, fm, ta, tsl, tp){
 		this.sc = score;
 		this.s = fs;

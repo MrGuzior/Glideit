@@ -9,12 +9,14 @@
 	gliderLeft = new Image();
 	windsockright = new Image();
 	windsockleft = new Image();
+	star = new Image();
 	cloud.src = "img/cloud.png";
 	bg.src = "img/background.png";
 	gliderRight.src = "img/gliderright.png";
 	gliderLeft.src = "img/gliderleft.png";
 	windsockright.src = "img/windsockright.png";
 	windsockleft.src = "img/windsockleft.png";
+	star.src = "img/star.png";
 
 	(function init(){
 		thermalArray = [];
@@ -27,7 +29,7 @@
 	})();
 
 		glider = new Glider(gliderPositionX, gliderStartY, gliderPaceY, cloudWidth, cloudHeigth, cloudCount, windStrength, windDirection, thermalArray);
-		turnpoint = new Turnpoint(turnpointPosition, 100, paceX, gliderPositionX, "red", "green", windStrength, windDirection, glider);
+		turnpoint = new Turnpoint(turnpointPosition, 100, paceX, gliderPositionX, "green", "#ffffff00", windStrength, windDirection, glider);
 		airport = new Airport(airportPosition,canvas.height - 3, paceX, gliderPositionX, airportLength, windStrength, windDirection, glider, turnpoint);
 		background = new Background(bg, windStrength, windDirection, glider, airport);
 		startLine = new Turnpoint(startlinePosition, 100, paceX, gliderPositionX, "green", "#ffffff00", windStrength, windDirection);
@@ -44,7 +46,7 @@
 		menuGlider = new Glider(gliderPositionX - 300, gliderStartY, gliderPaceY-0.4, cloudWidth, cloudHeigth, cloudCount, windStrength, windDirection, thermalArray);
 		menuBackground = new Background(bg, windStrength, windDirection, menuGlider, airport);
 
-		tutorialTurnpoint = new Turnpoint(4500, 100, paceX, gliderPositionX, "red", "green", windStrength, windDirection, glider);
+		tutorialTurnpoint = new Turnpoint(4500, 100, paceX, gliderPositionX, "green", "#ffffff00", windStrength, windDirection, glider);
 		tutorialAirport = new Airport(airportPosition,canvas.height - 3, paceX, gliderPositionX, airportLength, windStrength, windDirection, glider, tutorialTurnpoint);
 		tutorialBackground = new Background(bg, windStrength, windDirection, glider, tutorialAirport);
 		tutorialStartLine = new Turnpoint(2500, 100, paceX, gliderPositionX, "green", "#ffffff00", windStrength, windDirection);
@@ -58,5 +60,7 @@
 		tutorial6 = new Tutorial(2500, 300, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString6, tutorialFont);
 		tutorial7 = new Tutorial(1800, 400, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString7, tutorialFont);
 		tutorial8 = new Tutorial(277, 500, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString8 , tutorialFont);
+
+		tutorialStar = new Checkpoint(1700, 200, paceX, gliderPositionX, windStrength, windDirection, glider, star);
 
 })();
