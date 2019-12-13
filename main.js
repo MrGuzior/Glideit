@@ -94,6 +94,8 @@ function Main(turnpoint, airport, startLine, thermalArray, background){
 	}
 
 	function restart(){
+		watch.reset();
+		watch.stop();
 		glider = null;
 		turnpoint = null;
 		airport = null;
@@ -103,6 +105,7 @@ function Main(turnpoint, airport, startLine, thermalArray, background){
 		restartButton = null;
 		menuButton = null;
 		thermalArray = [];
+		flightStarted = false;
 		for (var i = 0; i < cloudCount; i++) {
 			thermalArray.push(new Thermal
 				(thermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, cloudCount, thermalStrength[i], windStrength, windDirection, glider));
