@@ -50,10 +50,10 @@ function Main(turnpoint, airport, startLine, thermalArray, background){
 		airport.update();
 		turnpoint.update();
 		startLine.update();
-		if(game){
-			restartButton.update();
-			menuButton.update();
-		}
+			if(game){
+				restartButton.update();
+				menuButton.update();
+			}
 			if (tutorial) {
 				for (var i = 0; i < tutorialItem.length; i++) {
 					if(i == 0 || i == 1 || i == 4 && !cloudBase && !turnpoint.tp){
@@ -71,9 +71,6 @@ function Main(turnpoint, airport, startLine, thermalArray, background){
 					if (i == 5 | i == 6 | i == 7 && turnpoint.tp) {
 						tutorialItem[i].vis = true;
 					}
-				}
-
-				for (var i = 0; i < tutorialItem.length; i++) {
 					tutorialItem[i].update();
 				}
 				for (var i = 0; i < tutorialStar.length; i++) {
