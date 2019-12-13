@@ -52,17 +52,17 @@
 		tutorialStartLine = new Turnpoint(2500, 100, paceX, gliderPositionX, "green", "#ffffff00", windStrength, windDirection);
 		tutorialGlider = new Glider(gliderPositionX, gliderStartY, gliderPaceY, cloudWidth, cloudHeigth, cloudCount, windStrength, windDirection, thermalArray);
 
-		tutorial1 = new Tutorial(700, 170, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString1, tutorialFont);
-		tutorial2 = new Tutorial(1650, 100, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString2, tutorialFont);
-		tutorial3 = new Tutorial(2600, 400, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString3, tutorialFont);
-		tutorial4 = new Tutorial(1700, 300, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString4, tutorialFont);
-		tutorial5 = new Tutorial(4560, 300, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString5, tutorialFont);
-		tutorial6 = new Tutorial(2500, 300, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString6, tutorialFont);
-		tutorial7 = new Tutorial(1800, 400, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString7, tutorialFont);
-		tutorial8 = new Tutorial(277, 500, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString8 , tutorialFont);
+		tutorialItem = [new Tutorial(700, 170, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString[0], tutorialFont),
+		new Tutorial(1650, 100, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString[1], tutorialFont),
+		new Tutorial(2600, 400, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString[2], tutorialFont),
+		new Tutorial(1700, 300, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString[3], tutorialFont),
+		new Tutorial(4560, 300, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString[4], tutorialFont),
+		new Tutorial(2500, 300, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString[5], tutorialFont),
+		new Tutorial(1800, 400, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString[6], tutorialFont),
+		new Tutorial(277, 500, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString[7] , tutorialFont)];
 
-		tutorialStar1 = new Checkpoint(1700, 200, paceX, gliderPositionX, windStrength, windDirection, glider, star);
-		tutorialStar2 = new Checkpoint(4600, 400, paceX, gliderPositionX, windStrength, windDirection, glider, star);
-		tutorialStar3 = new Checkpoint(400, 560, paceX, gliderPositionX, windStrength, windDirection, glider, star);
+		tutorialStar = [new Checkpoint(1700, 200, paceX, gliderPositionX, windStrength, windDirection, glider, star),
+		new Checkpoint(4600, 400, paceX, gliderPositionX, windStrength, windDirection, glider, star),
+		new Checkpoint(400, 560, paceX, gliderPositionX, windStrength, windDirection, glider, star)];
 
 })();

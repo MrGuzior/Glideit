@@ -16,24 +16,18 @@ function Main(turnpoint, airport, startLine, thermalArray, background){
 	function checkKeyPress(){
 		for (var i = 0; i < thermalArray.length; i++) {
 			thermalArray[i].key = true;
+		}
+		for (var i = 0; i < tutorialItem.length; i++) {
+			tutorialItem[i].key = true;
+		}
+		for (var i = 0; i < tutorialStar.length; i++) {
+			tutorialStar[i].key = true;
+		}
 			airport.key = true;
 			turnpoint.key = true;
 			background.key = true;
 			glider.key = true;
 			startLine.key = true;
-			tutorial1.key = true;
-			tutorial2.key = true;
-			tutorial3.key = true;
-			tutorial4.key = true;
-			tutorial5.key = true;
-			tutorial6.key = true;
-			tutorial7.key = true;
-			tutorial8.key = true;
-
-			tutorialStar1.key = true;
-			tutorialStar2.key = true;
-			tutorialStar3.key = true;
-		}
 	}
 
 	(function animate(){
@@ -60,37 +54,31 @@ function Main(turnpoint, airport, startLine, thermalArray, background){
 			restartButton.update();
 			menuButton.update();
 		}
-		if (tutorial) {
-				tutorial1.vis = true;
-				tutorial2.vis = true;
-				tutorial5.vis = true;
-			if (cloudBase) {
-				tutorial1.vis = false;
-				tutorial2.vis = false;
-				tutorial3.vis = true;
-				tutorial4.vis = true;
-			}
-			if (turnpoint.tp) {
-				tutorial1.vis = false;
-				tutorial2.vis = false;
-				tutorial3.vis = false;
-				tutorial4.vis = false;
-				tutorial6.vis = true;
-				tutorial7.vis = true;
-				tutorial8.vis = true;
-			}
-				tutorial1.update();
-				tutorial2.update();
-				tutorial3.update();
-				tutorial4.update();
-				tutorial5.update();
-				tutorial6.update();
-				tutorial7.update();
-				tutorial8.update();
+			if (tutorial) {
+				for (var i = 0; i < tutorialItem.length; i++) {
+					if(i == 0 || i == 1 || i == 4 && !cloudBase && !turnpoint.tp){
+						tutorialItem[i].vis = true;
+					}
+					if (i == 1 | i == 0 && cloudBase && !turnpoint.tp) {
+						tutorialItem[i].vis = false;
+					}
+					if (i == 2 | i == 3 && cloudBase && !turnpoint.tp) {
+						tutorialItem[i].vis = true;
+					}
+					if (i == 0 | i == 1 | i == 2 | i == 3 && turnpoint.tp) {
+						tutorialItem[i].vis = false;
+					}
+					if (i == 5 | i == 6 | i == 7 && turnpoint.tp) {
+						tutorialItem[i].vis = true;
+					}
+				}
 
-				tutorialStar1.update();
-				tutorialStar2.update();
-				tutorialStar3.update();
+				for (var i = 0; i < tutorialItem.length; i++) {
+					tutorialItem[i].update();
+				}
+				for (var i = 0; i < tutorialStar.length; i++) {
+					tutorialStar[i].update();
+				}
 		}
 		startScore();
 	})();

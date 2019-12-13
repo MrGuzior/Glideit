@@ -56,12 +56,13 @@ let cloudPositionY = 0,
 
 	thermalStrength = thermalStrength5;
 
-let tutorialString1 = "Click any button\n to make a turn\n       ->",
-	tutorialString2 = "Turn here to\ngain altitude",
-	tutorialString3 = "Fly towards\nthe turnpoint\n      ->",	
-	tutorialString4 = "Timer starts after\ncrossing startline\n       ->",
-	tutorialString5 = "Turn around and fly\ntowards the airport\n       <-",
-	tutorialString6 = "Land within the\nairport boundries\n     <-",
-	tutorialString7 = "Don't fly past it!\n   <-",
-	tutorialString8 = "!   airport   !",
+let tutorialString = ["Click any button\n to make a turn\n       ->",
+						"Turn here to\ngain altitude",
+						"Fly towards\nthe turnpoint\n      ->",	
+						"Timer starts after\ncrossing startline\n       ->",
+						"Turn around and fly\ntowards the airport\n       <-",
+						"Land within the\nairport boundries\n     <-",
+						"Don't fly past it!\n   <-",
+						"!   airport   !"],
 	tutorialFont = "35px Courier New";
+
