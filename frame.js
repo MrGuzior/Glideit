@@ -53,6 +53,41 @@
 		}
 	}
 
+	/*function Sink(x, y, dx, xx, yy, ta, ts, ws, wd, gd){
+		this.x = x;
+		this.y = y;
+		this.dx = dx;
+		this.xx = xx;
+		this.yy = yy;
+		this.ta = ta;
+		this.ts = ts;
+		this.ws = ws;
+		this.wd = wd;
+		this.gd = gd;
+		
+		this.draw = function(){
+			c.save();
+			c.drawImage(cloud, this.x, this.y, this.xx, this.yy);
+			c.restore();
+		}
+
+		this.update = function(){
+			if (this.key) {
+				this.dx = -this.dx;
+				this.key = false;
+			}
+
+			if (!glider.lnd) {
+				if (this.wd == 1) {
+				this.x -= this.dx + this.ws;
+				}else{
+				this.x -= this.dx - this.ws;
+				}
+			}			
+				this.draw();
+		}
+	}*/
+
 	function Glider(x, y, dy, tw, th, ta, ws, wd, tha){
 		this.x = x;
 		this.y = y;
@@ -309,19 +344,21 @@
 		this.ajsX = ajsX;
 		this.clr = clr;
 		this.state = state;
+		this.vis = true;
 
 		this.draw = function(){
-			c.save();
-			c.beginPath();
-			c.rect(this.x, this.y, this.xx, this.yy);
-			c.strokeStyle = this.clr;
-			c.stroke();
-			c.restore();
-			c.save();
-			c.font = this.fnt;
-			c.fillText(this.str, this.x + this.ajsX, this.y + this.ajsY);
-			c.restore();
-		}
+			if (this.vis) {
+				c.save();
+				c.beginPath();
+				c.rect(this.x, this.y, this.xx, this.yy);
+				c.strokeStyle = this.clr;
+				c.stroke();
+				c.restore();
+				c.save();
+				c.font = this.fnt;
+				c.fillText(this.str, this.x + this.ajsX, this.y + this.ajsY);
+				c.restore();};
+			}
 
 		this.update = function(){	
 			this.draw();
@@ -331,9 +368,9 @@
 		this.click = function(event){
 			this.cx = event.pageX;
 			this.cy = event.pageY;
-			if (this.cx >= this.x && this.cx <= this.x + this.xx &&
-				this.cy >= this.y && this.cy <= this.y + this.yy/* && this.state*/) {
-					return true;
+				if (this.cx >= this.x && this.cx <= this.x + this.xx &&
+					this.cy >= this.y && this.cy <= this.y + this.yy/* && this.state*/) {
+						return true;
 			}
 		}
 	}
@@ -354,13 +391,13 @@
 
 		this.draw = function(){
 			c.font = this.fnt;
-			for (var i = 0; i < this.lines.length; i++) {
-			if (this.vis) {
-					c.save();
-					c.fillText(this.lines[i], this.x,this.y + (i*this.lh));
-					c.restore();
+				for (var i = 0; i < this.lines.length; i++) {
+					if (this.vis) {
+						c.save();
+						c.fillText(this.lines[i], this.x,this.y + (i*this.lh));
+						c.restore();
+					}
 				}
-			}
 		}
 
 		this.update = function(){

@@ -1,14 +1,24 @@
 (function mainMenu(){
-	canvas.addEventListener('click', buttonClick);
+	addEventListener('click', buttonClick);
 
 	function buttonClick(event){
-		if (newGameButton.click(event)) {
+		if (newGameButton.click(event)&&menu) {
 			menu = false;
 			game = true;
 		}
-		if (tutorialButton.click(event)) {
+		if (tutorialButton.click(event)&&menu) {
 			menu = false;
 			tutorial = true;
+		}
+		if (settingsButton.click(event)&&menu) {
+			levels = true;
+			menu = false;
+			
+		}
+		for (var i = 0; i < levelArray.length; i++) {
+			if(levelArray[i].click(event)){
+				console.log("Ping " + (i+1));
+			}
 		}
 	}
 
@@ -26,16 +36,44 @@
 					thermalArray[i].update();
 				}
 			menuGlider.update();
+			cancelAnimationFrame(animate);
+		}
+		if (levels) {
+			newGameButton.vis = false;
+			tutorialButton.vis = false;
+			highscoresButton.vis = false;
+			settingsButton.vis = false;
+			emptyButton.vis = false;
+			requestAnimationFrame(animate);
+			menuBackground.update();
+			levelArray = [];
+		for (var i = 0; i < 25; i++) {
+			let z = canvas.width/2 - 176;
+			let x = i <= 4 ? z + (i*70)
+			 	: i <= 9 ? z + (i*70) - 350 
+			 	: i <= 14 ? z + (i*70) - 700
+			 	: i <= 19 ? z + (i*70) - 1050
+			 	: z + (i*70) - 1400;
+			let y = i <= 4 ? canvas.height/2 - 50 -100 : i <= 9 ? canvas.height/2 - 50 + 70 -100: i <= 14 ? canvas.height/2 - 50 + 140 -100: i <= 19 ? canvas.height/2 - 50 + 210 -100: canvas.height/2 - 50 + 280-100; 
+			levelArray.push(new Button
+				(x, y, 50, 50, i+1, null, "40px Courier New", "#000", 0, 35, menu));
+			}
+			
+				for (var i = 0; i < thermalArray.length; i++) {
+					thermalArray[i].update();
+				}
+			menuGlider.update();
+			for (var i = 0; i < 25; i++) {
+					levelArray[i].update();
+				}
+			cancelAnimationFrame(animate);
 		}
 		if (tutorial) {
-			newGameButton.xx = 0;
-			newGameButton.yy = 0;
-			tutorialButton = null;
-			highscoresButton = null;
-			settingsButton = null;
-			emptyButton = null;
-			menuGlider = null;
-			menuBackground = null;
+			newGameButton.vis = false;
+			tutorialButton.vis = false;
+			highscoresButton.vis = false;
+			settingsButton.vis = false;
+			emptyButton.vis = false;
 			thermalArray = [];
 				for (var i = 0; i < cloudCount; i++) {
 					thermalArray.push(new Thermal
@@ -47,12 +85,11 @@
 			tutorialGame = new Main(tutorialTurnpoint, tutorialAirport, tutorialStartLine, thermalArray, tutorialBackground);
 		}
 		if (game) {
-			newGameButton.xx = 0;
-			newGameButton.yy = 0;
-			tutorialButton = null;
-			highscoresButton = null;
-			settingsButton = null;
-			emptyButton = null;
+			newGameButton.vis = false;
+			tutorialButton.vis = false;
+			highscoresButton.vis = false;
+			settingsButton.vis = false;
+			emptyButton.vis = false;
 			menuGlider = null;
 			menuBackground = null;
 			thermalArray = [];

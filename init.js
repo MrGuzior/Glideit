@@ -24,7 +24,7 @@
 		windDirection = randomIntFromRange(0,2);
 		for (var i = 0; i < cloudCount; i++) {
 			thermalArray.push(new Thermal
-				(thermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, cloudCount, thermalStrength[i], windStrength, windDirection, glider));
+				(menuThermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, cloudCount, thermalStrength[i], windStrength, windDirection, glider));
 		}
 	})();
 
@@ -64,5 +64,5 @@
 		tutorialStar = [new Checkpoint(1700, 200, paceX, gliderPositionX, windStrength, windDirection, glider, star),
 		new Checkpoint(4600, 400, paceX, gliderPositionX, windStrength, windDirection, glider, star),
 		new Checkpoint(400, 560, paceX, gliderPositionX, windStrength, windDirection, glider, star)];
-
+		
 })();

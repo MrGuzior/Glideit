@@ -2,7 +2,7 @@ function Main(turnpoint, airport, startLine, thermalArray, background){
 
 	addEventListener('keydown', checkKeyPress);
 	addEventListener('touchstart',checkKeyPress);
-	canvas.addEventListener('click', buttonClick);
+	addEventListener('click', buttonClick);
 
 	function buttonClick(event){
 		if (restartButton.click(event)) {
