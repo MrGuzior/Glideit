@@ -22,28 +22,28 @@ let thermalStrength1 = [1, 1, 0.5, 0.55, 0.4, 0.6, 0.45, 0.47, 0.41, 0.56, 0.7, 
 
 	menuThermalSeparation = [100, 1200, 2300, 3200, 3900, 4700, 4900, 5600, 6700, 7500, 8500, 9000, 9300, 10300, 11000, 11000],
 	
-	thermalSeparation = thermalSeparation5,
+	thermalSeparation = [800, 1200, 2300, 3200, 3900, 4700, 4900, 5600, 6700, 7500, 8500, 9000, 9300, 10300, 11000, 11000],
 
-	tutorialThermalStrength = thermalStrength5,
+	tutorialThermalStrength = [0.8, 0.3, 0.4, 0.45, 0.4, 0.6, 0.45, 0.47, 0.45, 0.46, 0.5, 0.4, 0.43, 0.61, 0.51, 0.52],
 
-	thermalStrength = thermalStrength5;
+	thermalStrength = [0.8, 0.3, 0.4, 0.45, 0.4, 0.6, 0.45, 0.47, 0.45, 0.46, 0.5, 0.4, 0.43, 0.61, 0.51, 0.52];
 
 	function setLevel(lvl){
 		switch(lvl){
 			case 0:
-			thermalSeparation = thermalSeparation5;
-			tutorialThermalStrength = thermalStrength5;
-			thermalStrength = thermalStrength5;
+			thermalSeparation = [800, 1200, 2300, 3200, 3900, 4700, 4900, 5600, 6700, 7500, 8500, 9000, 9300, 10300, 11000, 11000];
+			tutorialThermalStrength = [0.8, 0.3, 0.4, 0.45, 0.4, 0.6, 0.45, 0.47, 0.45, 0.46, 0.5, 0.4, 0.43, 0.61, 0.51, 0.52];
+			thermalStrength = [0.8, 0.3, 0.4, 0.45, 0.4, 0.6, 0.45, 0.47, 0.45, 0.46, 0.5, 0.4, 0.43, 0.61, 0.51, 0.52];
 			break;
 			case 1:
-			thermalSeparation = thermalSeparation5;
-			tutorialThermalStrength = thermalStrength5;
-			thermalStrength = thermalStrength5;
+			thermalSeparation = [800, 1200, 2300, 3200, 3900, 4700, 4900, 5600, 6700, 7500, 8500, 9000, 9300, 10300, 11000, 11000];
+			tutorialThermalStrength = [0.8, 0.3, 0.4, 0.45, 0.4, 0.6, 0.45, 0.47, 0.45, 0.46, 0.5, 0.4, 0.43, 0.61, 0.51, 0.52];
+			thermalStrength = [0.8, 0.3, 0.4, 0.45, 0.4, 0.6, 0.45, 0.47, 0.45, 0.46, 0.5, 0.4, 0.43, 0.61, 0.51, 0.52];
 			break;
 			case 2:
-			thermalSeparation = thermalSeparation5;
-			tutorialThermalStrength = thermalStrength5;
-			thermalStrength = thermalStrength3;
+			thermalSeparation = [700, 2700, 3000, 4500, 6500, 6700, 6900, 8000, 10000, 11000, 12000, 13000, 14000, 15000, 15000, 15000];
+			tutorialThermalStrength = [0.8, 0.3, 0.4, 0.45, 0.4, 0.6, 0.45, 0.47, 0.45, 0.46, 0.5, 0.4, 0.43, 0.61, 0.51, 0.52];
+			thermalStrength = [3, 0.7, 1, 1.2, 0.8, 1.1, 0.6, 1.02, 0.9, 0.8, 1, 1, 1, 1, 1, 1];
 			break;
 			case 3:
 			thermalSeparation = thermalSeparation5;
@@ -161,9 +161,9 @@ let thermalStrength1 = [1, 1, 0.5, 0.55, 0.4, 0.6, 0.45, 0.47, 0.41, 0.56, 0.7, 
 			thermalStrength = thermalStrength3;
 			break;
 			default:
-			thermalSeparation = thermalSeparation5;
-			tutorialThermalStrength = thermalStrength5;
-			thermalStrength = thermalStrength5;
+			thermalSeparation = [800, 1200, 2300, 3200, 3900, 4700, 4900, 5600, 6700, 7500, 8500, 9000, 9300, 10300, 11000, 11000];
+			tutorialThermalStrength = [0.8, 0.3, 0.4, 0.45, 0.4, 0.6, 0.45, 0.47, 0.45, 0.46, 0.5, 0.4, 0.43, 0.61, 0.51, 0.52];
+			thermalStrength = [0.8, 0.3, 0.4, 0.45, 0.4, 0.6, 0.45, 0.47, 0.45, 0.46, 0.5, 0.4, 0.43, 0.61, 0.51, 0.52];
 			console.log("pong");
 		}
 	}

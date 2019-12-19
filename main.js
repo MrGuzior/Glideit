@@ -65,7 +65,7 @@ function Main(turnpoint, airport, startLine, thermalArray, background){
 			stop();
 			if (game) {
 				let scoreArray = localStorage.getItem("score") ? JSON.parse(localStorage.getItem("score")) : [];
-				calcScore(score, flightSeconds, flightMinutes, cloudCount, startLine.x, turnpoint.x);
+				calcScore(score, flightSeconds, flightMinutes, null, startLine.x, turnpoint.x);
 				scoreArray.push(totalScore);
 				localStorage.setItem("score", JSON.stringify(scoreArray));
 				scoreArray.sort(function(a,b){return b-a});
@@ -80,7 +80,7 @@ function Main(turnpoint, airport, startLine, thermalArray, background){
 		}
 		if (glider.lnd && !airport.finish) {
 				stop();
-				calcScore(score, flightSeconds, flightMinutes, cloudCount, startLine.x, turnpoint.x);
+				calcScore(score, flightSeconds, flightMinutes, null, startLine.x, turnpoint.x);
 				window.alert("Outlanding, try again! ");
 			location.reload();
 		}
@@ -106,11 +106,11 @@ function Main(turnpoint, airport, startLine, thermalArray, background){
 		menuButton = null;
 		thermalArray = [];
 		flightStarted = false;
-		for (var i = 0; i < cloudCount; i++) {
+		for (var i = 0; i < thermalSeparation.length; i++) {
 			thermalArray.push(new Thermal
-				(thermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, cloudCount, thermalStrength[i], windStrength, windDirection, glider));
+				(thermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, thermalSeparation.length, thermalStrength[i], windStrength, windDirection, glider));
 		}
-		glider = new Glider(gliderPositionX, gliderStartY, gliderPaceY, cloudWidth, cloudHeigth, cloudCount, windStrength, windDirection, thermalArray);
+		glider = new Glider(gliderPositionX, gliderStartY, gliderPaceY, cloudWidth, cloudHeigth, thermalSeparation.length, windStrength, windDirection, thermalArray);
 		turnpoint = new Turnpoint(turnpointPosition, 100, paceX, gliderPositionX, "red", "green", windStrength, windDirection, glider);
 		airport = new Airport(airportPosition,canvas.height - 3, paceX, gliderPositionX, airportLength, windStrength, windDirection, glider, turnpoint);
 		background = new Background(bg, windStrength, windDirection, glider, airport);

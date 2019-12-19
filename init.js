@@ -22,13 +22,13 @@
 		thermalArray = [];
 		var sum = 0;
 		windDirection = randomIntFromRange(0,2);
-		for (var i = 0; i < cloudCount; i++) {
+		for (var i = 0; i < menuThermalSeparation.length; i++) {
 			thermalArray.push(new Thermal
-				(menuThermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, cloudCount, thermalStrength[i], windStrength, windDirection, glider));
+				(menuThermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, menuThermalSeparation.length, thermalStrength[i], windStrength, windDirection, glider));
 		}
 	})();
 
-		glider = new Glider(gliderPositionX, gliderStartY, gliderPaceY, cloudWidth, cloudHeigth, cloudCount, windStrength, windDirection, thermalArray);
+		glider = new Glider(gliderPositionX, gliderStartY, gliderPaceY, cloudWidth, cloudHeigth, null, windStrength, windDirection, thermalArray);
 		turnpoint = new Turnpoint(turnpointPosition, 100, paceX, gliderPositionX, "green", "#ffffff00", windStrength, windDirection, glider);
 		airport = new Airport(airportPosition,canvas.height - 3, paceX, gliderPositionX, airportLength, windStrength, windDirection, glider, turnpoint);
 		background = new Background(bg, windStrength, windDirection, glider, airport);
@@ -43,14 +43,14 @@
 		settingsButton = new Button(canvas.width/2 - 125, canvas.height/2 - 50 + 150, 250, 45, "Settings", null, "50px Courier New", "#000", 5, 35, menu);
 		emptyButton = new Button(canvas.width/2 - 2000, canvas.height/2 - 50 + 150, 250, 45, "", null, "50px Courier New", "#000", 5, 35, menu);
 	
-		menuGlider = new Glider(gliderPositionX - 300, gliderStartY, gliderPaceY-0.4, cloudWidth, cloudHeigth, cloudCount, windStrength, windDirection, thermalArray);
+		menuGlider = new Glider(gliderPositionX - 300, gliderStartY, gliderPaceY-0.4, cloudWidth, cloudHeigth, null, windStrength, windDirection, thermalArray);
 		menuBackground = new Background(bg, windStrength, windDirection, menuGlider, airport);
 
 		tutorialTurnpoint = new Turnpoint(4500, 100, paceX, gliderPositionX, "green", "#ffffff00", windStrength, windDirection, glider);
 		tutorialAirport = new Airport(airportPosition,canvas.height - 3, paceX, gliderPositionX, airportLength, windStrength, windDirection, glider, tutorialTurnpoint);
 		tutorialBackground = new Background(bg, windStrength, windDirection, glider, tutorialAirport);
 		tutorialStartLine = new Turnpoint(2500, 100, paceX, gliderPositionX, "green", "#ffffff00", windStrength, windDirection);
-		tutorialGlider = new Glider(gliderPositionX, gliderStartY, gliderPaceY, cloudWidth, cloudHeigth, cloudCount, windStrength, windDirection, thermalArray);
+		tutorialGlider = new Glider(gliderPositionX, gliderStartY, gliderPaceY, cloudWidth, cloudHeigth, null, windStrength, windDirection, thermalArray);
 
 		tutorialItem = [new Tutorial(700, 170, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString[0], tutorialFont),
 		new Tutorial(1650, 100, paceX, gliderPositionX, windStrength, windDirection, glider, tutorialString[1], tutorialFont),

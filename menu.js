@@ -59,7 +59,11 @@
 					 	: i <= 14 ? z + (i*70) - 700
 					 	: i <= 19 ? z + (i*70) - 1050
 					 	: z + (i*70) - 1400;
-					let y = i <= 4 ? canvas.height/2 - 50 -100 : i <= 9 ? canvas.height/2 - 50 + 70 -100: i <= 14 ? canvas.height/2 - 50 + 140 -100: i <= 19 ? canvas.height/2 - 50 + 210 -100: canvas.height/2 - 50 + 280-100; 
+					let y = i <= 4 ? canvas.height/2 - 50 -100
+						  : i <= 9 ? canvas.height/2 - 50 + 70 -100
+						  : i <= 14 ? canvas.height/2 - 50 + 140 -100
+						  : i <= 19 ? canvas.height/2 - 50 + 210 -100
+						  : canvas.height/2 - 50 + 280-100; 
 					levelArray.push(new Button
 						(x, y, 50, 50, i+1, null, "40px Courier New", "#000", 0, 35, menu));
 
@@ -84,9 +88,9 @@
 				settingsButton.vis = false;
 				emptyButton.vis = false;
 				thermalArray = [];
-					for (var i = 0; i < cloudCount; i++) {
+					for (var i = 0; i < tutorialThermalSeparation.length; i++) {
 						thermalArray.push(new Thermal
-						(tutorialThermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, cloudCount, thermalStrength[i], windStrength, windDirection, glider));
+						(tutorialThermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, tutorialThermalSeparation.length, thermalStrength[i], windStrength, windDirection, glider));
 					}
 					glider.tha = thermalArray;
 				cancelAnimationFrame(animate);
@@ -106,16 +110,16 @@
 				menuGlider = null;
 				menuBackground = null;
 				thermalArray = [];
-					for (var i = 0; i < cloudCount; i++) {
+					for (var i = 0; i < thermalSeparation.length; i++) {
 						thermalArray.push(new Thermal
-						(thermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, cloudCount, thermalStrength[i], windStrength, windDirection, glider));
+						(thermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, thermalSeparation.length, thermalStrength[i], windStrength, windDirection, glider));
 					}
 					glider.tha = thermalArray;
 				cancelAnimationFrame(animate);
 
 				mainGame = new Main(turnpoint, airport, startLine, thermalArray, background);
 			}
-			runGame();
+		runGame();
 		}
 	})();
 

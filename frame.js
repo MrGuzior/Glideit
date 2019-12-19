@@ -165,7 +165,7 @@
 				this.y += this.dy;
 
 		this.scale = function(){
-			for (var i = 0; i < cloudCount; i++){
+			for (var i = 0; i < this.tha.length; i++){
 					this.tha[i].xx = this.tw;
 					this.tha[i].yy = this.th;
 						this.tha[i].xx -= ((this.y-canvas.height-this.yy)+this.tw)*1.3;
