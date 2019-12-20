@@ -23,7 +23,7 @@
 		windDirection = randomIntFromRange(0,2);
 		for (var i = 0; i < menuThermalSeparation.length; i++) {
 			thermalArray.push(new Thermal
-				(menuThermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, menuThermalSeparation.length, thermalStrength[i], windStrength, windDirection, glider));
+				(menuThermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, menuThermalSeparation.length, thermalStrength[i], windStrength, windDirection, glider, true));
 		}
 	})();
 

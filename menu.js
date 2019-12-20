@@ -88,12 +88,15 @@
 				thermalArray = [];
 					for (var i = 0; i < tutorialThermalSeparation.length; i++) {
 						thermalArray.push(new Thermal
-						(tutorialThermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, tutorialThermalSeparation.length, thermalStrength[i], windStrength, windDirection, glider));
+						(tutorialThermalSeparation[i], cloudPositionY, paceX, cloudWidth, 
+						cloudHeigth, tutorialThermalSeparation.length, thermalStrength[i],
+						windStrength, windDirection, glider, true));
 					}
 					glider.tha = thermalArray;
 				cancelAnimationFrame(animate);
 
-			tutorialGame = new Main(tutorialTurnpoint, tutorialAirport, tutorialStartLine, thermalArray, tutorialBackground);
+			tutorialGame = new Main(tutorialTurnpoint, tutorialAirport, tutorialStartLine, 
+									thermalArray, tutorialBackground);
 			}
 		runTutorial();
 		}
@@ -110,7 +113,9 @@
 					thermalArray = [];
 						for (var i = 0; i < thermalSeparation.length; i++) {
 							thermalArray.push(new Thermal
-							(thermalSeparation[i], cloudPositionY, paceX, cloudWidth, cloudHeigth, thermalSeparation.length, thermalStrength[i], windStrength, windDirection, glider));
+							(thermalSeparation[i], cloudPositionY, paceX, cloudWidth,
+							cloudHeigth, thermalSeparation.length, thermalStrength[i],
+							windStrength, windDirection, glider, thermalVisibility[i]));
 						}
 						glider.tha = thermalArray;
 					cancelAnimationFrame(animate);

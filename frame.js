@@ -18,7 +18,7 @@
 		}
 	}
 
-	function Thermal(x, y, dx, xx, yy, ta, ts, ws, wd, gd){
+	function Thermal(x, y, dx, xx, yy, ta, ts, ws, wd, gd, vis){
 		this.x = x;
 		this.y = y;
 		this.dx = dx;
@@ -29,11 +29,14 @@
 		this.ws = ws;
 		this.wd = wd;
 		this.gd = gd;
+		this.vis = vis;
 		
 		this.draw = function(){
-			c.save();
-			c.drawImage(cloud, this.x, this.y, this.xx, this.yy);
-			c.restore();
+			if (this.vis) {
+				c.save();
+				c.drawImage(cloud, this.x, this.y, this.xx, this.yy);
+				c.restore();
+			}
 		}
 
 		this.update = function(){
@@ -114,7 +117,6 @@
 			c.save();
 			c.drawImage(this.drc, this.x, this.y,this.xx,this.yy);
 			c.restore();
-			
 		}
 
 		this.update = function(){
