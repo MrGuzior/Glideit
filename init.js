@@ -20,7 +20,6 @@
 
 	(function init(){
 		thermalArray = [];
-		var sum = 0;
 		windDirection = randomIntFromRange(0,2);
 		for (var i = 0; i < menuThermalSeparation.length; i++) {
 			thermalArray.push(new Thermal
