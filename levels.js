@@ -28,6 +28,10 @@ let thermalStrength1 = [1, 1, 0.5, 0.55, 0.4, 0.6, 0.45, 0.47, 0.41, 0.56, 0.7, 
 
 	thermalStrength = [0.8, 0.3, 0.4, 0.45, 0.4, 0.6, 0.45, 0.47, 0.45, 0.46, 0.5, 0.4, 0.43, 0.61, 0.51, 0.52];
 
+	turnpointPosition = 10000;
+
+	startlinePosition = 1000;
+
 	function setLevel(lvl){
 		switch(lvl){
 			case 0:
@@ -42,7 +46,7 @@ let thermalStrength1 = [1, 1, 0.5, 0.55, 0.4, 0.6, 0.45, 0.47, 0.41, 0.56, 0.7, 
 			thermalStrength = 	[0.8, 0.3,  0.4,  0.45, 0.4,  0.6,  0.45, 0.47, 0.45, 0.46, 0.5,  0.4,  0.43, 0.61,  0.51,  0.52];
 			thermalVisibility = [true,false,true, true, true, false,false,false,false,true, true, false,false,true,  true,  false];
 			turnpointPosition = 10000;
-			startlinePosition = 1000;
+			startlinePosition = 1500;
 			break;
 			case 2:
 			thermalSeparation = [700, 2700, 3000, 4500, 6500, 6700, 6900, 8000, 10000, 11000, 12000, 13000, 14000, 15000, 15000, 15000];

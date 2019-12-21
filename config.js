@@ -1,7 +1,8 @@
 let flightMinutes,flightSeconds,score,totalScore,canvas,c,cloud,
 	bg,gliderRight,gliderLeft,gx,background,glider,airport,turnpoint,
 	startLine,displayTimer,timer,toggleBtn,resetBtn,watch,timerMilliseconds,
-	timerSeconds,timerMinutes, windDirection, ts, windsockright, windsockleft, cx, cy, timeString, star;
+	timerSeconds,timerMinutes, windDirection, ts, windsockright, windsockleft,
+	cx, cy, timeString, star, turnpointPosition, startlinePosition;
 
 let cloudPositionY = 0,
 	minCloudPositionY = 40,
@@ -16,8 +17,6 @@ let cloudPositionY = 0,
 	maxThermalStrength = 1.4,
 	airportLength = 300,
 	airportPosition = 277.5,
-	turnpointPosition = 10000,
-	startlinePosition = 1000,
 	flightStarted = false,
 	thermalArray = [],
 	tutorialThermalArray = [],
@@ -30,6 +29,7 @@ let cloudPositionY = 0,
 	levels = false,
 	cloudBase = false,
 	lvl = 0;
+
 let tutorialString = ["Click any button\n to make a turn\n       ->",
 						"Turn here to\ngain altitude",
 						"Fly towards\nthe turnpoint\n      ->",	

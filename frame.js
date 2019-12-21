@@ -56,41 +56,6 @@
 		}
 	}
 
-	/*function Sink(x, y, dx, xx, yy, ta, ts, ws, wd, gd){
-		this.x = x;
-		this.y = y;
-		this.dx = dx;
-		this.xx = xx;
-		this.yy = yy;
-		this.ta = ta;
-		this.ts = ts;
-		this.ws = ws;
-		this.wd = wd;
-		this.gd = gd;
-		
-		this.draw = function(){
-			c.save();
-			c.drawImage(cloud, this.x, this.y, this.xx, this.yy);
-			c.restore();
-		}
-
-		this.update = function(){
-			if (this.key) {
-				this.dx = -this.dx;
-				this.key = false;
-			}
-
-			if (!glider.lnd) {
-				if (this.wd == 1) {
-				this.x -= this.dx + this.ws;
-				}else{
-				this.x -= this.dx - this.ws;
-				}
-			}			
-				this.draw();
-		}
-	}*/
-
 	function Glider(x, y, dy, tw, th, ta, ws, wd, tha){
 		this.x = x;
 		this.y = y;

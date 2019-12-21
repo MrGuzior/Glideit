@@ -95,7 +95,9 @@
 					glider.tha = thermalArray;
 				cancelAnimationFrame(animate);
 
-			tutorialGame = new Main(tutorialTurnpoint, tutorialAirport, tutorialStartLine, 
+				turnpoint = new Turnpoint(turnpointPosition, 100, paceX, gliderPositionX, "green", "#ffffff00", windStrength, windDirection, glider);
+				startLine = new Turnpoint(startlinePosition, 100, paceX, gliderPositionX, "green", "#ffffff00", windStrength, windDirection);
+				tutorialGame = new Main(tutorialTurnpoint, tutorialAirport, tutorialStartLine, 
 									thermalArray, tutorialBackground);
 			}
 		runTutorial();
@@ -119,6 +121,8 @@
 						}
 						glider.tha = thermalArray;
 					cancelAnimationFrame(animate);
+				turnpoint = new Turnpoint(turnpointPosition, 100, paceX, gliderPositionX, "green", "#ffffff00", windStrength, windDirection, glider);
+				startLine = new Turnpoint(startlinePosition, 100, paceX, gliderPositionX, "green", "#ffffff00", windStrength, windDirection);
 				mainGame = new Main(turnpoint, airport, startLine, thermalArray, background);
 			}
 		runGame();
