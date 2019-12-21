@@ -10,9 +10,7 @@
 			tutorial = true;
 		}
 		if (settingsButton.click(event)&&menu) {
-			levels = true;
-			menu = false;
-			
+			console.log("settings");
 		}
 		for (var i = 0; i < levelArray.length; i++) {
 			if(levelArray[i].click(event)&&levels){
