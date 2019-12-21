@@ -42,9 +42,9 @@ let thermalStrength1 = [1, 1, 0.5, 0.55, 0.4, 0.6, 0.45, 0.47, 0.41, 0.56, 0.7, 
 			startlinePosition = 1000;
 			break;
 			case 1:
-			thermalSeparation = [800, 1200, 2300, 3200, 3900, 4700, 4900, 5600, 6700, 7500, 8500, 9000, 9300, 10300, 11000, 11000];
-			thermalStrength = 	[0.8, 0.3,  0.4,  0.45, 0.4,  0.6,  0.45, 0.47, 0.45, 0.46, 0.5,  0.4,  0.43, 0.61,  0.51,  0.52];
-			thermalVisibility = [true,false,true, true, true, false,false,false,false,true, true, false,false,true,  true,  false];
+			thermalSeparation = [800, 1200, 2300, 3200, 3900, 4700, 4900, 5600, 6700, 7500, 8500, 9000, 9300, 10300, 11000];
+			thermalStrength = 	[0.8, 0.3,  0.4,  0.45, 0.4,  0.6,  0.45, 0.47, 0.45, 0.46, 0.5,  0.4,  0.43, 0.61,  0.51];
+			thermalVisibility = [true,false,true, true, true, false,false,false,false,true, true, false,false,true,  true];
 			turnpointPosition = 10000;
 			startlinePosition = 1500;
 			break;

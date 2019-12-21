@@ -3,7 +3,7 @@
 	function buttonClick(event){
 		if (newGameButton.click(event)&&menu) {
 			menu = false;
-			game = true;
+			levels = true;
 		}
 		if (tutorialButton.click(event)&&menu) {
 			menu = false;
