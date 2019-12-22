@@ -69,9 +69,10 @@ function Main(turnpoint, airport, startLine, thermalArray, background){
 				scoreArray.push(totalScore);
 				localStorage.setItem("score", JSON.stringify(scoreArray));
 				scoreArray.sort(function(a,b){return b-a});
-				window.alert("You made it!\nYour score: " + totalScore +
+				/*window.alert("You made it!\nYour score: " + totalScore +
 				 " points\nHighscores:\n" + scoreArray.map(function(num,index)
-					{return index + 1 + ". " + num.toString()}).join("\n"));
+					{return index + 1 + ". " + num.toString()}).join("\n"));*/
+				displayAlert("complete", flightMinutes, flightSeconds, timerMilliseconds);
 			}
 			if (tutorial) {
 				window.alert("You made it!");
@@ -79,10 +80,11 @@ function Main(turnpoint, airport, startLine, thermalArray, background){
 			location.reload();
 		}
 		if (glider.lnd && !airport.finish) {
+			displayAlert("complete", flightMinutes, flightSeconds, timerMilliseconds);
 				stop();
-				calcScore(score, flightSeconds, flightMinutes, null, startLine.x, turnpoint.x);
-				window.alert("Outlanding, try again! ");
-			location.reload();
+				//calcScore(score, flightSeconds, flightMinutes, null, startLine.x, turnpoint.x);
+				//window.alert("Outlanding, try again! ");
+			//location.reload();
 		}
 	}
 

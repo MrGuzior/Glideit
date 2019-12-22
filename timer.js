@@ -49,6 +49,7 @@ function Stopwatch(elem) {
     timerMinutes = minutes;
     flightMinutes = minutes;
     flightSeconds = seconds;
+    flightMilliseconds = milliseconds;
   }
 
   this.start = function() {

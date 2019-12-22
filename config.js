@@ -1,4 +1,4 @@
-let flightMinutes,flightSeconds,score,totalScore,canvas,c,cloud,
+let flightMinutes,flightSeconds, flightMilliseconds, score,totalScore,canvas,c,cloud,
 	bg,gliderRight,gliderLeft,gx,background,glider,airport,turnpoint,
 	startLine,displayTimer,timer,toggleBtn,resetBtn,watch,timerMilliseconds,
 	timerSeconds,timerMinutes, windDirection, ts, windsockright, windsockleft,
@@ -27,6 +27,7 @@ let cloudPositionY = 0,
 	game = false,
 	tutorial = false,
 	levels = false,
+	settings = false,
 	cloudBase = false,
 	lvl = 0;
 

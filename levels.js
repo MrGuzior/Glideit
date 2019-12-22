@@ -36,23 +36,23 @@ let thermalStrength1 = [1, 1, 0.5, 0.55, 0.4, 0.6, 0.45, 0.47, 0.41, 0.56, 0.7, 
 		switch(lvl){
 			case 0:
 			thermalSeparation = [800, 1200, 2300, 3200, 3900, 4700, 4900, 5600, 6700, 7500, 8500, 9000, 9300, 10300, 11000, 11000];
-			thermalStrength = 	[0.8, 0.3,  0.4,  0.45, 0.4,  0.6,  0.45, 0.47, 0.45, 0.46, 0.5,  0.4,  0.43, 0.61,  0.51,  0.52];
+			thermalStrength   = [0.8, 0.3,  0.4,  0.45, 0.4,  0.6,  0.45, 0.47, 0.45, 0.46, 0.5,  0.4,  0.43, 0.61,  0.51,  0.52];
 			thermalVisibility = [true,true,true, true, true, true,true,true,true,true, true, true,true,true,  true,  true];
-			turnpointPosition = 10000;
+			turnpointPosition = 2000;
 			startlinePosition = 1000;
 			break;
 			case 1:
 			thermalSeparation = [800, 1200, 2300, 3200, 3900, 4700, 4900, 5600, 6700, 7500, 8500, 9000, 9300, 10300, 11000];
-			thermalStrength = 	[0.8, 0.3,  0.4,  0.45, 0.4,  0.6,  0.45, 0.47, 0.45, 0.46, 0.5,  0.4,  0.43, 0.61,  0.51];
+			thermalStrength   = [0.8, 0.3,  0.4,  0.45, 0.4,  0.6,  0.45, 0.47, 0.45, 0.46, 0.5,  0.4,  0.43, 0.61,  0.51];
 			thermalVisibility = [true,false,true, true, true, false,false,false,false,true, true, false,false,true,  true];
-			turnpointPosition = 10000;
-			startlinePosition = 1500;
+			turnpointPosition = 1200;
+			startlinePosition = 1000;
 			break;
 			case 2:
-			thermalSeparation = [700, 2700, 3000, 4500, 6500, 6700, 6900, 8000, 10000, 11000, 12000, 13000, 14000, 15000, 15000, 15000];
-			thermalStrength = 	[3,   0.7,  1,    1.2,  0.8,  1.1,  0.6,  1.02, 0.9,   0.8,   1,     1,     1,     1,     1,     1];
-			thermalVisibility = [true,false,true, true, true, false,false,false,false, true,  true,  false, false, true,  true,  false];
-			turnpointPosition = 10000;
+			thermalSeparation = [100, 400, 800, 1500, 2000,2500, 2800, 3600, 3900];
+			thermalStrength = 	[0.7,-1.1, 0.65,0.65, -0.9,0.45, -0.8, 0.8,  0.5];
+			thermalVisibility = [true,false,true,true,false,true,false,true, true];
+			turnpointPosition = 8000;
 			startlinePosition = 1000;
 			break;
 			case 3:

@@ -10,7 +10,8 @@
 			tutorial = true;
 		}
 		if (settingsButton.click(event)&&menu) {
-			console.log("settings");
+			menu = false;
+			settings = true;
 		}
 		for (var i = 0; i < levelArray.length; i++) {
 			if(levelArray[i].click(event)&&levels){
@@ -99,6 +100,16 @@
 									thermalArray, tutorialBackground);
 			}
 		runTutorial();
+		}
+		if (settings) {
+				newGameButton.vis = false;
+				tutorialButton.vis = false;
+				highscoresButton.vis = false;
+				settingsButton.vis = false;
+				emptyButton.vis = false;
+				requestAnimationFrame(animate);
+					menuBackground.update();
+					menuGlider.update();
 		}
 		if (game) {
 			function runGame(){

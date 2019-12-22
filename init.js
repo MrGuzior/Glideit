@@ -28,6 +28,7 @@
 	})();
 
 		glider = new Glider(gliderPositionX, gliderStartY, gliderPaceY, cloudWidth, cloudHeigth, null, windStrength, windDirection, thermalArray);
+		turnpoint = new Turnpoint(turnpointPosition, 100, paceX, gliderPositionX, "green", "#ffffff00", windStrength, windDirection, glider);
 		airport = new Airport(airportPosition,canvas.height - 3, paceX, gliderPositionX, airportLength, windStrength, windDirection, glider, turnpoint);
 		background = new Background(bg, windStrength, windDirection, glider, airport);
 		displayTimer = new drawTimer();
